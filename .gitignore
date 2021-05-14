@@ -10,8 +10,7 @@
 
 # next.js
 /.next/
-# Comment to upload built files to serve on GH Pages
-# /out/
+/out/
 
 # production
 /build
