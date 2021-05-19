@@ -113,7 +113,7 @@ export default function Home() {
     setSelectedViewingDistance(event.target.value as string);
   };
 
-  const handleCalculate = async event => {
+  const handleCalculate = async (event: React.FormEvent) => {
     event.preventDefault();
     var VA = -1;
     if (visualAcuityUnits === '20/') {
