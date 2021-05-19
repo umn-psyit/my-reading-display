@@ -33,6 +33,7 @@ jobs:
       - name: Export
         run: |
           npm run export
+          touch .nojekyll
           
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.3
