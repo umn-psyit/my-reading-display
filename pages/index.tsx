@@ -117,14 +117,15 @@ export default function Home() {
     event.preventDefault();
     var VA = -1;
     if (visualAcuityUnits === '20/') {
-      VA = 20/parseFloat(visualAcuity);
+      VA = -Math.log10(20/parseFloat(visualAcuity));
     }
     else if (visualAcuityUnits === '6/') {
-      VA = 6/parseFloat(visualAcuity);
+      VA = -Math.log10(6/parseFloat(visualAcuity));
     }
     else {
       VA = parseFloat(visualAcuity);
     }
+    console.log(`VA: ${VA}`);
 
     var CPS = -1;
     var CFL = getCFLFromString(hasCentralFieldLoss);
@@ -135,15 +136,17 @@ export default function Home() {
     }
     else {
       if (criticalPrintSizeUnits === '20/') {
-        CPS = 20/parseFloat(criticalPrintSize);
+        CPS = -Math.log10(20/parseFloat(criticalPrintSize));
       }
       else if (criticalPrintSizeUnits === '6/') {
-        CPS = 6/parseFloat(criticalPrintSize);
+        CPS = -Math.log10(6/parseFloat(criticalPrintSize));
       }
       else {
         CPS = parseFloat(criticalPrintSize);
       }
     }
+
+    console.log(`CPS: ${CPS}`);
 
     var vd = parseFloat(selectedViewingDistance);
     var xf = getXFFromFont(selectedFont);
@@ -349,7 +352,7 @@ export default function Home() {
 
         <Typography variant="body2" style={{background: '#DDDDDD', padding: '2em', margin: '1em'}}>-- Placeholder for displays -- </Typography>
 
-        <Typography variant="body1" style={{marginTop: '1em'}}>To achieve maximum reading speed on a tablet display, when reading at {selectedViewingDistance} with {selectedFont} font, the reader needs to use a print size between {minPointSize.toFixed(1)} and {maxPointSize.toFixed(1)}.</Typography>
+        <Typography variant="body1" style={{marginTop: '1em'}}>To achieve maximum reading speed on a tablet display, when reading at {selectedViewingDistance} with {selectedFont} font, the reader needs to use a print size between {minPointSize.toFixed(1)}pt and {maxPointSize.toFixed(1)}pt.</Typography>
 
         <Typography variant="body2" style={{background: '#DDDDDD', padding: '2em', margin: '1em'}}>-- Placeholder for figure -- </Typography>
       </Box>
