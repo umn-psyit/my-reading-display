@@ -1,29 +1,29 @@
 export const visionUnits = [
     {
-        value: 'Snellen (U.S)',
-        label: '20/'
+        value:  'Snellen (U.S.)',
+        label:  '20/'
     },
     {
-        value: 'Snellen (Metric)',
-        label: '6/'
+        value:  'Snellen (Metric)',
+        label:  '6/'
     },
     {
-        value: 'logMAR',
-        label: ''
+        value:  'logMAR',
+        label:  ' '
     }
 ]
 
 export const centralFieldLossOptions = [
     {
-        value: 'Yes',
+        value: 'yes',
         CFS: 1
     },
     {
-        value: 'No',
+        value: 'no',
         CFS: 0
     },
     {
-        value: 'Don\'t Know',
+        value: 'dontKnow',
         CFS: 1
     }
 ]
@@ -141,15 +141,15 @@ export const fontOptions = [
 
 export const viewingDistances = [
     {
-        metric: '40cm',
-        imperial: '16 inch'
+        label: '40cm (16 inch)',
+        vd: 40
     },
     {
-        metric: '20cm',
-        imperial: '8 inch'
+        label: '20cm (8 inch)',
+        vd: 20
     },
     {
-        metric: '15cm',
-        imperial: '6 inch'
+        label: '15cm (6 inch)',
+        vd: 15
     }
 ]
