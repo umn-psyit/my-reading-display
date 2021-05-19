@@ -3,8 +3,8 @@ import Head from 'next/head';
 import type { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+// import { useTranslation } from 'next-i18next';
+// import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { TextField, InputAdornment, Select, MenuItem, FormControl, InputLabel, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Box } from '@material-ui/core';
 
@@ -58,7 +58,7 @@ function getCFLFromString(centralFieldLoss: string): number {
 
 export default function Home() {
   const router = useRouter();
-  const { t } = useTranslation('common');
+  // const { t } = useTranslation('common');
 
   const [visualAcuityUnits, setVisualAcuityUnits] = React.useState(visionUnits[0].label);
   const [visualAcuity, setVisualAcuity] = React.useState('');
@@ -193,16 +193,16 @@ export default function Home() {
   return (
     <div className="container" style={{padding: '1em'}}>
       <Head>
-        <title>{t('appTitle')}</title>
+        <title>Vision Calculator</title>
       </Head>
 
       <main>
-      <Typography variant="h1">{t('appTitle')}</Typography>
+      <Typography variant="h1">Vision Calculator</Typography>
       <hr style={{ width: '50%', marginLeft: '0px'}}/>
 
       <form autoComplete='off' onSubmit={handleCalculate} onChange={hideResults}>        
-        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>{t('enterVisualAcuity')}</Typography>
-        <Typography variant='body2' style={{marginBottom: '1em'}}>{t('chooseFromUnits')}</Typography>
+        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Please enter the reader's binocular visual acuity.</Typography>
+        <Typography variant='body2' style={{marginBottom: '1em'}}>Choose from one of the given units.</Typography>
 
         <Box>
           <FormControl style={{marginRight: '1em'}} required>
@@ -236,8 +236,8 @@ export default function Home() {
           />
         </Box>
 
-        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>{t('enterCritcalPrintSize')}</Typography>
-        <Typography variant='body2' style={{marginBottom: '1em'}}>{t('chooseFromUnits')}</Typography>
+        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Please enter the reader's critical print size measured by reading charts. Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
+        <Typography variant='body2' style={{marginBottom: '1em'}}>Choose from one of the given units.</Typography>
 
         <Box>
           <FormControl style={{marginRight: '1em'}}>
@@ -268,7 +268,7 @@ export default function Home() {
           />
         </Box>
 
-        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>{t('hasCentralFieldLoss')}</Typography>
+        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Does the reader have central field loss?</Typography>
 
         <FormControl required>
           <FormLabel>Central Field Loss</FormLabel>
@@ -277,11 +277,11 @@ export default function Home() {
             value={hasCentralFieldLoss}
             onChange={handleChangeHasCentralFieldLoss}
           >
-            {centralFieldLossOptions.map(({value, CFL}, index) => (
+            {centralFieldLossOptions.map(({value, CFL, label}, index) => (
               <FormControlLabel
                 value={value}
                 control={<Radio color="primary" required={true}/>}
-                label={t(value)}
+                label={label}
                 key={index}
               />
             ))}
@@ -290,7 +290,7 @@ export default function Home() {
 
         <br />
 
-        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>{t('enterFont')}</Typography>
+        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Please select a preferred font.</Typography>
 
         <Box>
           <FormControl required style={{marginRight: '1em'}}>
@@ -312,7 +312,7 @@ export default function Home() {
           </FormControl>
         </Box>
 
-        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>{t('enterViewingDistance')}</Typography>
+        <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Please enter the preferred viewing distance for reading.</Typography>
 
         <Box>
           <FormControl required style={{marginRight: '1em'}}>
@@ -334,22 +334,22 @@ export default function Home() {
           </FormControl>
         </Box>
 
-        <Button type="submit" variant="contained" color="primary" style={{marginTop: '3em'}}>{t('calculate')}</Button>
+        <Button type="submit" variant="contained" color="primary" style={{marginTop: '3em'}}>Calculate</Button>
 
-        <Button onClick={clearForm} variant="contained" color="secondary" style={{marginTop: '3em', marginLeft: '1em'}}>{t('clear')}</Button>
+        <Button onClick={clearForm} variant="contained" color="secondary" style={{marginTop: '3em', marginLeft: '1em'}}>Clear</Button>
       </form>
 
       <Box hidden={!hasResults}>
         <a id="results"></a>
-        <Typography variant="h4" style={{marginTop: '1em'}}>{t('results')}</Typography>
+        <Typography variant="h4" style={{marginTop: '1em'}}>Results</Typography>
 
-        <Typography variant="body1" style={{marginTop: '1em'}}>{t('minDisplayWidth', {cm: minDisplayWidth.toFixed(1), inch: (minDisplayWidth/2.54).toFixed(1)})} {}</Typography>
+        <Typography variant="body1" style={{marginTop: '1em'}}>To achieve a maximum reading speed, the reader needs a display with a width larger than {minDisplayWidth.toFixed(1)}cm ({(minDisplayWidth/2.54).toFixed(1)} inch).</Typography>
 
-        <Typography variant="body1" style={{marginTop: '1em'}}>{t('chooseMatchingDisplay')}</Typography>
+        <Typography variant="body1" style={{marginTop: '1em'}}>Please refer to the table below for a list of common displays that meet this requirements, and choose a preferred display.</Typography>
 
         <Typography variant="body2" style={{background: '#DDDDDD', padding: '2em', margin: '1em'}}>-- Placeholder for displays -- </Typography>
 
-        <Typography variant="body1" style={{marginTop: '1em'}}>{t('usePointSize', {distance: selectedViewingDistance, font: selectedFont, minPoint: minPointSize.toFixed(1), maxPoint: maxPointSize.toFixed(1)})}</Typography>
+        <Typography variant="body1" style={{marginTop: '1em'}}>To achieve maximum reading speed on a tablet display, when reading at {selectedViewingDistance} with {selectedFont} font, the reader needs to use a print size between {minPointSize.toFixed(1)} and {maxPointSize.toFixed(1)}.</Typography>
 
         <Typography variant="body2" style={{background: '#DDDDDD', padding: '2em', margin: '1em'}}>-- Placeholder for figure -- </Typography>
       </Box>
@@ -362,11 +362,11 @@ export default function Home() {
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  if (context.locale === undefined) {
-    throw new Error('context.locale is undefined');
-  }
-  return {props: {
-    ...(await serverSideTranslations(context.locale, ['common']))
-  }}
-}
+// export const getStaticProps: GetStaticProps = async (context) => {
+//   if (context.locale === undefined) {
+//     throw new Error('context.locale is undefined');
+//   }
+//   return {props: {
+//     ...(await serverSideTranslations(context.locale, ['common']))
+//   }}
+// }

@@ -3,4 +3,5 @@ import type { AppProps } from 'next/app'
 
 const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />
 
-export default appWithTranslation(MyApp)
+// export default appWithTranslation(MyApp)
+export default MyApp
