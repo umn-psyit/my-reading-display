@@ -13,5 +13,6 @@
     "calculate": "Calculate",
     "minDisplayWidth": "To achieve a maximum reading speed, the reader needs a display with a width larger than {{cm}}cm ({{inch}} inch)",
     "chooseMatchingDisplay": "Please refer to the table below for a list of common displays that meet this requirements, and choose a preferred display.",
-    "usePointSize": "To achieve maximum reading speed on a tablet display, when reading at {{distance}} with {{font}} font, the reader needs to use a print size between {{minPoint}} and {{maxPoint}}."
+    "usePointSize": "To achieve maximum reading speed on a tablet display, when reading at {{distance}} with {{font}} font, the reader needs to use a print size between {{minPoint}} and {{maxPoint}}.",
+    "clear": "Clear"
 }

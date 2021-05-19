@@ -16,15 +16,15 @@ export const visionUnits = [
 export const centralFieldLossOptions = [
     {
         value: 'yes',
-        CFS: 1
+        CFL: 1
     },
     {
         value: 'no',
-        CFS: 0
+        CFL: 0
     },
     {
         value: 'dontKnow',
-        CFS: 1
+        CFL: 1
     }
 ]
 
