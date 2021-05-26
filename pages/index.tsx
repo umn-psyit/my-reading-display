@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 import { TextField, InputAdornment, Select, MenuItem, FormControl, InputLabel, Typography, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Box } from '@material-ui/core';
 
-import { visionUnits, centralFieldLossOptions, fontOptions, viewingDistances } from '../calculator/options-definitions';
+import { visionUnits, centralFieldLossOptions, fontOptions, viewingDistances, distanceUnits } from '../calculator/options-definitions';
 
 function getXFFromFont(selectedFont: string): number {
   var result = -1;
@@ -78,6 +78,10 @@ export default function Home() {
 
   const [hasResults, setHasResults] = React.useState(false);
 
+  const [needsCustomViewDistance, setNeedsCustomViewDistance] = React.useState(false);
+  const [customViewDistance, setCustomViewDistance] = React.useState('0');
+  const [customViewDistanceUnits, setCustomViewDistanceUnits] = React.useState(distanceUnits[0].label);
+
   const handleChangeVisualAcuityUnits = (event: React.ChangeEvent<{ value: unknown }>) => {
     hideResults();
     setVisualAcuityUnits(event.target.value as string);
@@ -110,8 +114,23 @@ export default function Home() {
 
   const handleChangeSelectedViewingDistance = (event: React.ChangeEvent<{ value: unknown }>) => {
     hideResults();
+    if (event.target.value as string === 'Custom') {
+      setNeedsCustomViewDistance(true);
+    } else {
+      setNeedsCustomViewDistance(false);
+    }
     setSelectedViewingDistance(event.target.value as string);
   };
+
+  const handleChangeCustomViewDistance = (event: React.ChangeEvent<{ value: unknown }>) => {
+    hideResults();
+    setCustomViewDistance(event.target.value as string);
+  }
+
+  const handleChangeViewDistanceUnits = (event: React.ChangeEvent<{ value: unknown }>) => {
+    hideResults();
+    setCustomViewDistanceUnits(event.target.value as string);
+  }
 
   const handleCalculate = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -149,6 +168,14 @@ export default function Home() {
     console.log(`CPS: ${CPS}`);
 
     var vd = parseFloat(selectedViewingDistance);
+    if (needsCustomViewDistance === true) {
+      if (customViewDistanceUnits === 'in') {
+        vd = 2.54 * parseFloat(customViewDistance);
+      }
+      else {
+        vd = parseFloat(customViewDistance);
+      }
+    }
     var xf = getXFFromFont(selectedFont);
     var wf = getWFFromFont(selectedFont);
 
@@ -232,7 +259,7 @@ export default function Home() {
             id="standard-required"
             label="Visual Acuity"
             InputProps={{
-              startAdornment: <InputAdornment position="start">{visualAcuityUnits}</InputAdornment>,
+              startAdornment: <InputAdornment position="start" aria-live="polite">{visualAcuityUnits}</InputAdornment>,
             }}
             value={visualAcuity}
             onChange={handleChangeVisualAcuity}
@@ -264,7 +291,7 @@ export default function Home() {
           <TextField
             label="Critical Print Size"
             InputProps={{
-              startAdornment: <InputAdornment position="start">{criticalPrintSizeUnits}</InputAdornment>,
+              startAdornment: <InputAdornment position="start" aria-live="polite">{criticalPrintSizeUnits}</InputAdornment>,
             }}
             value={criticalPrintSize}
             onChange={handleChangeCriticalPrintSize}
@@ -334,6 +361,33 @@ export default function Home() {
                 <MenuItem key={index} value={label}>{label}</MenuItem>
               ))}
             </Select>
+
+            <Box hidden={!needsCustomViewDistance} aria-live="polite">
+              <TextField
+                required
+                id="standard-required"
+                label="Custom view distance"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end" aria-live="polite">{customViewDistanceUnits}</InputAdornment>,
+                }}
+                value={customViewDistance}
+                onChange={handleChangeCustomViewDistance}
+                hidden={!needsCustomViewDistance}
+              />
+
+              <Select
+              labelId="select-view-distance-units"
+              value={customViewDistanceUnits}
+              onChange={handleChangeViewDistanceUnits}
+              autoWidth
+              style={{ minWidth: '8em', margin: '1em 0 0 1em'}}
+            >
+              {distanceUnits.map(({value, label}, index) => (
+                <MenuItem key={index} value={label}>{value}</MenuItem>
+              ))}
+            </Select>
+            </Box>
+            
           </FormControl>
         </Box>
 
@@ -342,7 +396,7 @@ export default function Home() {
         <Button onClick={clearForm} variant="contained" color="secondary" style={{marginTop: '3em', marginLeft: '1em'}}>Clear</Button>
       </form>
 
-      <Box hidden={!hasResults}>
+      <Box hidden={!hasResults} aria-live="polite">
         <a id="results"></a>
         <Typography variant="h4" style={{marginTop: '1em'}}>Results</Typography>
 

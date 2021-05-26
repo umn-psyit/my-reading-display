@@ -13,6 +13,17 @@ export const visionUnits = [
     }
 ]
 
+export const distanceUnits = [
+    {
+        value: 'Imperial (in)',
+        label: 'in'
+    },
+    {
+        value: 'Metric (cm)',
+        label: 'cm'
+    }
+]
+
 export const centralFieldLossOptions = [
     {
         value: 'yes',
@@ -154,5 +165,9 @@ export const viewingDistances = [
     {
         label: '15cm (6 inch)',
         vd: 15
+    },
+    {
+        label: 'Custom',
+        vd: -1
     }
 ]
