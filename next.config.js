@@ -2,5 +2,5 @@
 
 module.exports = {
   // i18n,
-  basePath: '/online-vision-calculator'
+  basePath: '/my-reading-display'
 }
