@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" style={{ fontSize: 18 }}>
+      <Html lang="en" style={{ fontSize: '18pt' }}>
         <Head>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
           <link rel="shortcut icon" href="my-reading-display/favicon.ico" />

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>My Reading Display</title>
+        <title>Welcome | My Reading Display</title>
       </Head>
 
       <main>
