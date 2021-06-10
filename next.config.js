@@ -2,5 +2,5 @@
 
 module.exports = {
   // i18n,
-  basePath: '/my-reading-display'
+  // basePath: '/my-reading-display'
 }
