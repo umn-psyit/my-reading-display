@@ -48,7 +48,7 @@ class InputForm extends Component<InputFormProps> {
                 InputProps={{
                   startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.visualAcuityUnits}</InputAdornment>,
                 }}
-                style={{ width: '10rem', margin: '0 1rem 0 0' }}
+                style={{ width: '13rem', margin: '0 1rem 0 0' }}
               />
 
               <TextField
@@ -61,7 +61,7 @@ class InputForm extends Component<InputFormProps> {
                 onChange={props.handleChange}
                 error={props.touched.visualAcuityUnits && Boolean(props.errors.visualAcuityUnits)}
                 helperText={props.touched.visualAcuityUnits && props.errors.visualAcuityUnits}
-                style={{ width: '10rem' }}
+                style={{ width: '12rem' }}
               >
                 {visionUnits.map(({ value, label }, index) => (
                   <MenuItem key={index} value={label}>{value}</MenuItem>
@@ -84,7 +84,7 @@ class InputForm extends Component<InputFormProps> {
                 InputProps={{
                   startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.criticalPrintSizeUnits}</InputAdornment>,
                 }}
-                style={{ width: '12rem', margin: '0 1rem 0 0' }}
+                style={{ width: '15rem', margin: '0 1rem 0 0' }}
               />
 
               <TextField
@@ -94,7 +94,7 @@ class InputForm extends Component<InputFormProps> {
                 label="CPS Units"
                 value={props.values.criticalPrintSizeUnits}
                 onChange={props.handleChange}
-                style={{ width: '10rem' }}
+                style={{ width: '13rem' }}
               >
                 {visionUnits.map(({ value, label }, index) => (
                   <MenuItem key={index} value={label}>{value}</MenuItem>
@@ -127,7 +127,7 @@ class InputForm extends Component<InputFormProps> {
               <TextField
                 select
                 required
-                style={{ width: '8em' }}
+                style={{ width: '12em' }}
                 id="selectedFont"
                 name="selectedFont"
                 label="Selected Font"
@@ -144,7 +144,7 @@ class InputForm extends Component<InputFormProps> {
               <TextField
                 select
                 required
-                style={{ width: '10rem' }}
+                style={{ width: '12rem' }}
                 id="selectedViewingDistance"
                 name="selectedViewingDistance"
                 label="Viewing Distance"
@@ -193,7 +193,7 @@ class InputForm extends Component<InputFormProps> {
               Calculate
             </Button>
             <Button color="secondary" variant="contained" type="reset" style={{marginLeft: '1rem'}}>
-              Clear
+              Reset
             </Button>
           </Form>
         }

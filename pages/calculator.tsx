@@ -6,6 +6,7 @@ import { OutputValues } from '../calculator/calculate';
 import InputForm from '../calculator/input-form';
 import Results from '../calculator/results';
 import { useRouter } from 'next/router';
+import ThemeChanger from "../components/theme-changer";
 
 export default function Calculator() {
 	const [results, setResults] = React.useState(new OutputValues(false, -1, -1, -1));
@@ -18,7 +19,7 @@ export default function Calculator() {
 			</Head>
 
 			<main>
-				<Link href="/"><Button color="secondary" variant="contained">Return Home</Button></Link>
+				<Link href="/"><Button color="secondary" variant="contained" style={{marginTop: '1rem'}}>Return Home</Button></Link>
 				<InputForm setResults={setResults} router={router} />
 				<Results results={results} />
 			</main>
