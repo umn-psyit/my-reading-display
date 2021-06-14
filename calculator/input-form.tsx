@@ -133,7 +133,8 @@ class InputForm extends Component<InputFormProps> {
                 name="selectedFont"
                 label="Selected Font"
                 value={props.values.selectedFont}
-                onChange={() => {props.handleChange(); }}
+                onChange={props.handleChange}
+                onFocus={() => setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}
               >
                 {fontOptions.map(({ font }, index) => (
                   <MenuItem key={index} value={font}>{font}</MenuItem>
@@ -151,6 +152,7 @@ class InputForm extends Component<InputFormProps> {
                 label="Viewing Distance"
                 value={props.values.selectedViewingDistance}
                 onChange={props.handleChange}
+                onFocus={() => setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}
               >
                 {viewingDistances.map(({ label }, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
