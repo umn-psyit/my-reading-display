@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Button, Typography, Container } from '@material-ui/core';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -14,19 +14,19 @@ export default function Calculator() {
 	const router = useRouter();
 
 	return (
-		<div className="container">
+		<Container maxWidth="md">
 			<Head>
 				<title>Calculator | My Reading Display</title>
 			</Head>
 
 			<main>
-				<Link href="/"><Button color="secondary" variant="contained" style={{marginTop: '1rem'}}>Return Home</Button></Link>
+				{/* <Link href="/"><Button color="secondary" variant="contained" style={{marginTop: '1rem'}}>Return Home</Button></Link> */}
 				<InputForm setResults={setResults} setInputs={setInputs} router={router} />
 				<Results results={results} inputs={inputs}/>
 			</main>
 
 			<footer>
 			</footer>
-		</div>
+		</Container>
 	)
 }
