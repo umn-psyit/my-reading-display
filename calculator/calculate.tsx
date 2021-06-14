@@ -145,6 +145,13 @@ export function calculateMinPointSize(vd: number, CPS: number, xf: number | unde
 	return (0.04 * vd * Math.pow(10, CPS)) / xf;
 }
 
+export function calculateMaxPointSize(minWidth: number, wf: number | undefined) {
+	if (wf === undefined) {
+		throw new Error('Could not calculate maximum point size because wf is undefined');
+	}
+	return (minWidth / (0.32 * wf));
+}
+
 export const calculate = (setResults: (results: OutputValues) => void, values: InputValuesInterface, router: NextRouter | undefined) => {
 	console.log(JSON.stringify(values));
 
