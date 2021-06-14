@@ -21,7 +21,7 @@ export default function Navbar() {
     return (
         <AppBar position="static" color="transparent">
             <Toolbar>
-                <Link href="/" variant="h6" component={Typography} className={classes.title}>
+                <Link href="/" variant="h6" component="a" className={classes.title}>
                     My Reading Display
                 </Link>
 
