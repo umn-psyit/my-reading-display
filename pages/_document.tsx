@@ -1,6 +1,6 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { Typography, ServerStyleSheets } from '@material-ui/core';
-import ThemeChanger from "../components/theme-changer";
+import Document, {Html, Head, Main, NextScript} from 'next/document';
+import {Typography, ServerStyleSheets} from '@material-ui/core';
+import ThemeChanger from '../components/theme-changer';
 import React from 'react';
 
 export default class MyDocument extends Document {
@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 

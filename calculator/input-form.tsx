@@ -1,10 +1,10 @@
-import { Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
-import { Form, Formik } from 'formik';
-import { NextRouter } from 'next/dist/client/router';
-import React, { Component } from 'react';
-import { calculate, OutputValues, InputValues } from '../calculator/calculate';
-import { centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits } from '../calculator/options-definitions';
-import { validationSchema } from '../calculator/validation';
+import {Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography} from '@material-ui/core';
+import {Form, Formik} from 'formik';
+import {NextRouter} from 'next/dist/client/router';
+import React, {Component} from 'react';
+import {calculate, OutputValues, InputValues} from '../calculator/calculate';
+import {centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits} from '../calculator/options-definitions';
+import {validationSchema} from '../calculator/validation';
 
 interface InputFormProps {
   setResults: (results: OutputValues) => void;
@@ -21,22 +21,28 @@ const initialValues = {
   selectedFont: fontOptions[0].font,
   selectedViewingDistance: viewingDistances[0].label,
   customViewDistance: 10,
-  customViewDistanceUnits: distanceUnits[0].label
+  customViewDistanceUnits: distanceUnits[0].label,
 };
 
 class InputForm extends Component<InputFormProps> {
   render() {
-    const { setResults, setInputs, router } = this.props;
+    const {setResults, setInputs, router} = this.props;
 
     return (
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => {setInputs(values); calculate(setResults, values, router);}}>
-        {props =>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => {
+        setInputs(values); calculate(setResults, values, router);
+      }}>
+        {(props) =>
           <Form
             onSubmit={props.handleSubmit}
-            onReset={() => {props.resetForm(); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}
-            onChange={(e) => {props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}>
-            <Typography variant='body1' style={{ marginBottom: '1em', marginTop: '1em' }}>Please enter the reader's binocular visual acuity <strong>(required)</strong>.</Typography>
-            <Box style={{ marginTop: '1em' }}>
+            onReset={() => {
+              props.resetForm(); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1));
+            }}
+            onChange={(e) => {
+              props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1));
+            }}>
+            <Typography variant='body1' style={{marginBottom: '1em', marginTop: '1em'}}>Please enter the reader's binocular visual acuity <strong>(required)</strong>.</Typography>
+            <Box style={{marginTop: '1em'}}>
               <TextField
                 required
                 id="visualAcuity"
@@ -49,7 +55,7 @@ class InputForm extends Component<InputFormProps> {
                 InputProps={{
                   startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.visualAcuityUnits}</InputAdornment>,
                 }}
-                style={{ width: '13rem', margin: '0 1rem 0 0' }}
+                style={{width: '13rem', margin: '0 1rem 0 0'}}
               />
 
               <TextField
@@ -62,18 +68,18 @@ class InputForm extends Component<InputFormProps> {
                 onChange={props.handleChange}
                 error={props.touched.visualAcuityUnits && Boolean(props.errors.visualAcuityUnits)}
                 helperText={props.touched.visualAcuityUnits && props.errors.visualAcuityUnits}
-                style={{ width: '12rem' }}
+                style={{width: '12rem'}}
               >
-                {visionUnits.map(({ value, label }, index) => (
+                {visionUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{value}</MenuItem>
                 ))}
               </TextField>
             </Box>
 
-            <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
-              <Typography variant='body1' style={{ marginTop: '2em' }}>Please enter the reader's critical print size measured by reading charts <strong>(optional)</strong>.</Typography>
+            <Box style={{marginTop: '1em', marginBottom: '1em'}}>
+              <Typography variant='body1' style={{marginTop: '2em'}}>Please enter the reader's critical print size measured by reading charts <strong>(optional)</strong>.</Typography>
 
-              <Typography variant='body1' style={{ marginBottom: '1em' }}>Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
+              <Typography variant='body1' style={{marginBottom: '1em'}}>Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
               <TextField
                 id="criticalPrintSize"
                 name="criticalPrintSize"
@@ -85,7 +91,7 @@ class InputForm extends Component<InputFormProps> {
                 InputProps={{
                   startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.criticalPrintSizeUnits}</InputAdornment>,
                 }}
-                style={{ width: '15rem', margin: '0 1rem 0 0' }}
+                style={{width: '15rem', margin: '0 1rem 0 0'}}
               />
 
               <TextField
@@ -95,16 +101,16 @@ class InputForm extends Component<InputFormProps> {
                 label="CPS Units"
                 value={props.values.criticalPrintSizeUnits}
                 onChange={props.handleChange}
-                style={{ width: '13rem' }}
+                style={{width: '13rem'}}
               >
-                {visionUnits.map(({ value, label }, index) => (
+                {visionUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{value}</MenuItem>
                 ))}
               </TextField>
             </Box>
 
             <Box>
-              <Typography variant='body1' style={{ marginBottom: '1em', marginTop: '2em' }}>Does the reader have central field loss?</Typography>
+              <Typography variant='body1' style={{marginBottom: '1em', marginTop: '2em'}}>Does the reader have central field loss?</Typography>
               <FormControl
                 required
               >
@@ -117,18 +123,18 @@ class InputForm extends Component<InputFormProps> {
                   value={props.values.hasCentralFieldLoss}
                   onChange={props.handleChange}
                 >
-                  {centralFieldLossOptions.map(({ label, CFL }, index) => (
+                  {centralFieldLossOptions.map(({label, CFL}, index) => (
                     <FormControlLabel control={<Radio />} key={index} value={label} label={label} />
                   ))}
                 </RadioGroup>
               </FormControl>
             </Box>
 
-            <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
+            <Box style={{marginTop: '1em', marginBottom: '1em'}}>
               <TextField
                 select
                 required
-                style={{ width: '12em' }}
+                style={{width: '12em'}}
                 id="selectedFont"
                 name="selectedFont"
                 label="Selected Font"
@@ -136,17 +142,17 @@ class InputForm extends Component<InputFormProps> {
                 onChange={props.handleChange}
                 onFocus={() => setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}
               >
-                {fontOptions.map(({ font }, index) => (
+                {fontOptions.map(({font}, index) => (
                   <MenuItem key={index} value={font}>{font}</MenuItem>
                 ))}
               </TextField>
             </Box>
 
-            <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
+            <Box style={{marginTop: '1em', marginBottom: '1em'}}>
               <TextField
                 select
                 required
-                style={{ width: '12rem' }}
+                style={{width: '12rem'}}
                 id="selectedViewingDistance"
                 name="selectedViewingDistance"
                 label="Viewing Distance"
@@ -154,7 +160,7 @@ class InputForm extends Component<InputFormProps> {
                 onChange={props.handleChange}
                 onFocus={() => setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}
               >
-                {viewingDistances.map(({ label }, index) => (
+                {viewingDistances.map(({label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
                 ))}
               </TextField>
@@ -171,7 +177,7 @@ class InputForm extends Component<InputFormProps> {
                   InputProps={{
                     endAdornment: <InputAdornment position="end" aria-live="polite">{props.values.customViewDistanceUnits}</InputAdornment>,
                   }}
-                  style={{ width: '10rem', margin: '0 1rem' }}
+                  style={{width: '10rem', margin: '0 1rem'}}
                 />
                 <TextField
                   select
@@ -181,11 +187,11 @@ class InputForm extends Component<InputFormProps> {
                   label="View Distance Units"
                   value={props.values.customViewDistanceUnits}
                   onChange={props.handleChange}
-                  style={{ width: '13rem' }}
+                  style={{width: '13rem'}}
                   error={props.touched.customViewDistanceUnits && Boolean(props.errors.customViewDistanceUnits)}
                   helperText={props.touched.customViewDistanceUnits && props.errors.customViewDistanceUnits}
                 >
-                  {distanceUnits.map(({ value, label }, index) => (
+                  {distanceUnits.map(({value, label}, index) => (
                     <MenuItem key={index} value={label}>{label}</MenuItem>
                   ))}
                 </TextField>
@@ -201,7 +207,7 @@ class InputForm extends Component<InputFormProps> {
           </Form>
         }
       </Formik>
-    )
+    );
   }
 }
 
