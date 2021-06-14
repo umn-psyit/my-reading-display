@@ -1,7 +1,28 @@
-import { appWithTranslation } from 'next-i18next'
-import type { AppProps } from 'next/app'
+import { Container, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider as NextThemeProvider, useTheme } from 'next-themes';
+import type { AppProps } from 'next/app';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../components/navbar';
+import { darkTheme, lightTheme } from '../src/theme';
 
-const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />
 
-// export default appWithTranslation(MyApp)
-export default MyApp
+export default function MyApp({ Component, pageProps }: AppProps) {
+    const [mounted, setMounted] = useState(false);
+    const { theme } = useTheme();
+
+    useEffect(() => setMounted(true), []);
+
+    if (!mounted) return null;
+
+    return (
+        <NextThemeProvider enableSystem>
+            <ThemeProvider theme={darkTheme}>
+                <CssBaseline />
+                <Container maxWidth="lg">
+                    <Navbar />
+                    <Component {...pageProps} />
+                </Container>
+            </ThemeProvider>
+        </NextThemeProvider >
+    )
+}

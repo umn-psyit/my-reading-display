@@ -44,6 +44,12 @@ export const centralFieldLossOptions = [
 
 export const fontOptions = [
     {
+        font: 'No Preference',
+        wx: undefined,
+        wf: undefined,
+        xf: undefined
+    },
+    {
         font: 'Times',
         wx: 0.96,
         wf: 0.43,
@@ -168,6 +174,6 @@ export const viewingDistances = [
     },
     {
         label: 'Custom',
-        vd: -1
+        vd: undefined
     }
 ]
