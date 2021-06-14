@@ -21,11 +21,11 @@ export default function Navbar() {
     return (
         <AppBar position="static" color="transparent">
             <Toolbar>
-                <Link href="/">
-                    <Typography variant="h6" className={classes.title}>My Reading Display</Typography>
+                <Link href="/" variant="h6" component={Typography} className={classes.title}>
+                    My Reading Display
                 </Link>
 
-                <ThemeChanger />
+                {/* <ThemeChanger /> */}
             </Toolbar>
         </AppBar>
         )

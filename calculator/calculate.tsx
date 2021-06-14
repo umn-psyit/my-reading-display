@@ -10,7 +10,7 @@ class MinMax {
 	};
 }
 
-function getXFFromFont(selectedFont: string): number | MinMax {
+export function getXFFromFont(selectedFont: string): number | MinMax {
 	var result = -1;
 	if (selectedFont.normalize() === 'No Preference') {
 		const min = Math.min.apply(Math, fontOptions.map(function (o) { return (o.xf === undefined) ? Number.MAX_VALUE : o.xf }));
@@ -70,7 +70,7 @@ function getCFLFromString(centralFieldLoss: string): number {
 	}
 }
 
-export interface InputValues {
+export interface InputValuesInterface {
 	visualAcuityUnits: string;
 	visualAcuity: string;
 	criticalPrintSizeUnits: string;
@@ -82,11 +82,37 @@ export interface InputValues {
 	customViewDistanceUnits: string;
 };
 
+export class InputValues implements InputValuesInterface {
+	visualAcuityUnits: string;
+	visualAcuity: string;
+	criticalPrintSizeUnits: string;
+	criticalPrintSize: string;
+	hasCentralFieldLoss: string;
+	selectedFont: string;
+	selectedViewingDistance: string;
+	customViewDistance: number;
+	customViewDistanceUnits: string;
+	constructor(visualAcuityUnits: string, visualAcuity: string, criticalPrintSizeUnits: string, criticalPrintSize: string, hasCentralFieldLoss: string, selectedFont: string, selectedViewingDistance: string, customViewDistance: number, customViewDistanceUnits: string) {
+		this.visualAcuityUnits = visualAcuityUnits;
+		this.visualAcuity = visualAcuity;
+		this.criticalPrintSizeUnits = criticalPrintSizeUnits;
+		this.criticalPrintSize = criticalPrintSize;
+		this.hasCentralFieldLoss = hasCentralFieldLoss;
+		this.selectedFont = selectedFont;
+		this.selectedViewingDistance = selectedViewingDistance;
+		this.customViewDistance = customViewDistance;
+		this.customViewDistanceUnits = customViewDistanceUnits;
+	}
+}
+
 export interface OutputValuesInterface {
 	show: boolean;
 	minWidth: number;
 	minPoint: number;
 	maxPoint: number;
+	viewDistance: number;
+	CPS: number;
+	VA: number;
 }
 
 export class OutputValues implements OutputValuesInterface {
@@ -94,16 +120,34 @@ export class OutputValues implements OutputValuesInterface {
 	minWidth: number;
 	minPoint: number;
 	maxPoint: number;
-	constructor(show: boolean, minWidth: number, minPoint: number, maxPoint: number) {
+	viewDistance: number;
+	CPS: number;
+	VA: number;
+	constructor(show: boolean, minWidth: number, minPoint: number, maxPoint: number, viewDistance: number, CPS: number, VA: number) {
 		this.show = show;
 		this.minWidth = minWidth;
 		this.minPoint = minPoint;
 		this.maxPoint = maxPoint;
+		this.viewDistance = viewDistance;
+		this.CPS = CPS;
+		this.VA = VA;
 	}
 };
 
-export const calculate = (setResults: (results: OutputValues) => void, values: InputValues, router: NextRouter | undefined) => {
+export function calculateMinWidth(vd: number, CPS: number) {
+	return 0.013 * vd * Math.pow(10, CPS);
+}
+
+export function calculateMinPointSize(vd: number, CPS: number, xf: number | undefined) {
+	if (xf === undefined) {
+		throw new Error('Could not calculate minimum point size because xf is undefined');
+	}
+	return (0.04 * vd * Math.pow(10, CPS)) / xf;
+}
+
+export const calculate = (setResults: (results: OutputValues) => void, values: InputValuesInterface, router: NextRouter | undefined) => {
 	console.log(JSON.stringify(values));
+
 	var VA = -1;
 	if (values.visualAcuityUnits === '20/') {
 		VA = -Math.log10(20 / parseFloat(values.visualAcuity));
@@ -149,17 +193,14 @@ export const calculate = (setResults: (results: OutputValues) => void, values: I
 	var xf = getXFFromFont(values.selectedFont);
 	var wf = getWFFromFont(values.selectedFont);
 
-	var minWidth = 0.013 * vd * Math.pow(10, CPS);
+	var minWidth = calculateMinWidth(vd, CPS);
 	if (isNaN(minWidth)) {
 		throw new Error(`minWidth is NaN, vd: ${vd}, CPS: ${CPS}`);
 	}
 
-	var minPoint: number | MinMax = -1;
+	var minPoint: number = -1;
 	if (xf instanceof MinMax) {
-		minPoint = new MinMax(
-			(0.04 * vd * Math.pow(10, CPS)) / xf.min,
-			(0.04 * vd * Math.pow(10, CPS)) / xf.max
-		);
+		minPoint = (0.04 * vd * Math.pow(10, CPS)) / xf.max;
 	}
 	else {
 		minPoint = (0.04 * vd * Math.pow(10, CPS)) / xf;
@@ -169,12 +210,9 @@ export const calculate = (setResults: (results: OutputValues) => void, values: I
 	}
 
 
-	var maxPoint: number | MinMax = -1;
+	var maxPoint: number = -1;
 	if (wf instanceof MinMax) {
-		maxPoint = new MinMax(
-			(minWidth / (0.32 * wf.min)),
-			(minWidth / (0.32 * wf.max))
-		)
+		maxPoint = (minWidth / (0.32 * wf.min));
 	}
 	else {
 		maxPoint = minWidth / (0.32 * wf);
@@ -183,11 +221,11 @@ export const calculate = (setResults: (results: OutputValues) => void, values: I
 		}
 	}
 
-	if (!(minPoint instanceof MinMax) && !(maxPoint instanceof MinMax)) {
-		var results = new OutputValues(true, minWidth, minPoint, maxPoint);
-		setResults(results);
-		if (router !== undefined) {
-			router.push('#results');
-		}
+	// if (!(minPoint instanceof MinMax) && !(maxPoint instanceof MinMax)) {
+	var results = new OutputValues(true, minWidth, minPoint, maxPoint, vd, CPS, VA);
+	setResults(results);
+	if (router !== undefined) {
+		router.push('#results');
 	}
+	// }
 };

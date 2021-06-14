@@ -2,12 +2,13 @@ import { Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, 
 import { Form, Formik } from 'formik';
 import { NextRouter } from 'next/dist/client/router';
 import React, { Component } from 'react';
-import { calculate, OutputValues } from '../calculator/calculate';
+import { calculate, OutputValues, InputValues } from '../calculator/calculate';
 import { centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits } from '../calculator/options-definitions';
 import { validationSchema } from '../calculator/validation';
 
 interface InputFormProps {
   setResults: (results: OutputValues) => void;
+  setInputs: (inputs: InputValues) => void;
   router?: NextRouter;
 }
 
@@ -25,16 +26,16 @@ const initialValues = {
 
 class InputForm extends Component<InputFormProps> {
   render() {
-    const { setResults, router } = this.props;
+    const { setResults, setInputs, router } = this.props;
 
     return (
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => calculate(setResults, values, router)}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => {setInputs(values); calculate(setResults, values, router);}}>
         {props =>
           <Form
             onSubmit={props.handleSubmit}
-            onReset={() => {props.resetForm(); setResults(new OutputValues(false, -1, -1, -1))}}
-            onChange={(e) => {props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1))}}>
-            <Typography variant='body1' style={{ marginBottom: '1em', marginTop: '1em' }}>Please enter the reader's binocular visual acuity.</Typography>
+            onReset={() => {props.resetForm(); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}
+            onChange={(e) => {props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}>
+            <Typography variant='body1' style={{ marginBottom: '1em', marginTop: '1em' }}>Please enter the reader's binocular visual acuity <strong>(required)</strong>.</Typography>
             <Box style={{ marginTop: '1em' }}>
               <TextField
                 required
@@ -70,7 +71,7 @@ class InputForm extends Component<InputFormProps> {
             </Box>
 
             <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
-              <Typography variant='body1' style={{ marginTop: '2em' }}>Please enter the reader's critical print size measured by reading charts.</Typography>
+              <Typography variant='body1' style={{ marginTop: '2em' }}>Please enter the reader's critical print size measured by reading charts <strong>(optional)</strong>.</Typography>
 
               <Typography variant='body1' style={{ marginBottom: '1em' }}>Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
               <TextField
@@ -132,7 +133,7 @@ class InputForm extends Component<InputFormProps> {
                 name="selectedFont"
                 label="Selected Font"
                 value={props.values.selectedFont}
-                onChange={props.handleChange}
+                onChange={() => {props.handleChange(); }}
               >
                 {fontOptions.map(({ font }, index) => (
                   <MenuItem key={index} value={font}>{font}</MenuItem>
@@ -168,7 +169,7 @@ class InputForm extends Component<InputFormProps> {
                   InputProps={{
                     endAdornment: <InputAdornment position="end" aria-live="polite">{props.values.customViewDistanceUnits}</InputAdornment>,
                   }}
-                  style={{ width: '8rem', margin: '0 1rem' }}
+                  style={{ width: '10rem', margin: '0 1rem' }}
                 />
                 <TextField
                   select
@@ -178,7 +179,7 @@ class InputForm extends Component<InputFormProps> {
                   label="View Distance Units"
                   value={props.values.customViewDistanceUnits}
                   onChange={props.handleChange}
-                  style={{ width: '10rem' }}
+                  style={{ width: '13rem' }}
                   error={props.touched.customViewDistanceUnits && Boolean(props.errors.customViewDistanceUnits)}
                   helperText={props.touched.customViewDistanceUnits && props.errors.customViewDistanceUnits}
                 >

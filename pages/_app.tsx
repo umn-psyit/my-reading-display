@@ -1,45 +1,28 @@
-import React from 'react';
-import { createMuiTheme, ThemeProvider, CssBaseline, Typography, Container } from '@material-ui/core';
+import { Container, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { ThemeProvider as NextThemeProvider, useTheme } from 'next-themes';
 import type { AppProps } from 'next/app';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
+import { darkTheme, lightTheme } from '../src/theme';
 
 
-export default function ReadingDisplayApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+    const [mounted, setMounted] = useState(false);
     const { theme } = useTheme();
-    const siteTheme = React.useMemo(() => {
-        if (theme === 'dark') {
-            return (
-                createMuiTheme({
-                    typography: {
-                        fontSize: 18,
-                        fontFamily: '\'Open Sans\', sans-serif'
-                    },
-                    palette: {
-                        type: 'dark'
-                    }
-                }))
-        }
-        return (
-            createMuiTheme({
-                typography: {
-                    fontSize: 18,
-                    fontFamily: '\'Open Sans\', sans-serif'
-                }
-            }))
-    }, [theme]);
 
+    useEffect(() => setMounted(true), []);
+
+    if (!mounted) return null;
 
     return (
-        <ThemeProvider theme={siteTheme}>
-            <NextThemeProvider>
+        <NextThemeProvider enableSystem>
+            <ThemeProvider theme={darkTheme}>
                 <CssBaseline />
                 <Container maxWidth="lg">
                     <Navbar />
-                    {/* <p>{theme}</p> */}
                     <Component {...pageProps} />
                 </Container>
-            </NextThemeProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+        </NextThemeProvider >
     )
 }
