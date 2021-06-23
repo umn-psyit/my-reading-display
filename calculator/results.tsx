@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { calculateMinPointSize, calculateMaxPointSize, calculateMinWidth, getXFFromFont, InputValues, OutputValues } from '../calculator/calculate';
 import { distanceUnits, fontOptions } from "../calculator/options-definitions";
 import * as yup from 'yup';
+import { roundPoints } from "../src/util";
 
 interface ResultsProps {
 	results: OutputValues;
@@ -139,7 +140,7 @@ export default function Results(props: ResultsProps) {
 									{font}
 								</TableCell>
 								<TableCell align="center">
-									{pointSize.toFixed(1)}
+									{roundPoints(pointSize)}
 								</TableCell>
 							</TableRow>
 						))}
@@ -209,10 +210,10 @@ export default function Results(props: ResultsProps) {
 										{font}
 									</TableCell>
 									<TableCell align="center">
-										{min.toFixed(1)}
+										{roundPoints(min)}
 									</TableCell>
 									<TableCell align="center">
-										{max.toFixed(1)}
+										{roundPoints(max)}
 									</TableCell>
 								</TableRow>
 							))}
