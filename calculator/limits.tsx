@@ -1,6 +1,6 @@
 export const logMARLimit = {
-	min: -0.52,
-	max: 3
+	min: -0.3,
+	max: 4
 };
 
 const snellenViewLimit = {
