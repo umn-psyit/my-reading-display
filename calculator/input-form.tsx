@@ -1,10 +1,11 @@
-import { Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
+import { Accordion, Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import { NextRouter } from 'next/dist/client/router';
 import React, { Component } from 'react';
 import { calculate, OutputValues, InputValues } from '../calculator/calculate';
 import { centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits } from '../calculator/options-definitions';
 import { validationSchema } from '../calculator/validation';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface InputFormProps {
   setResults: (results: OutputValues) => void;
@@ -29,12 +30,12 @@ class InputForm extends Component<InputFormProps> {
     const { setResults, setInputs, router } = this.props;
 
     return (
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => {setInputs(values); calculate(setResults, values, router);}}>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={(values) => { setInputs(values); calculate(setResults, values, router); }}>
         {props =>
           <Form
             onSubmit={props.handleSubmit}
-            onReset={() => {props.resetForm(); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}
-            onChange={(e) => {props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1))}}>
+            onReset={() => { props.resetForm(); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1)) }}
+            onChange={(e) => { props.handleChange(e); setResults(new OutputValues(false, -1, -1, -1, -1, -1, -1)) }}>
             <Typography variant='body1' style={{ marginBottom: '1em', marginTop: '1em' }}>Please enter the reader's binocular visual acuity <strong>(required)</strong>.</Typography>
             <Box style={{ marginTop: '1em' }}>
               <TextField
@@ -124,7 +125,7 @@ class InputForm extends Component<InputFormProps> {
               </FormControl>
             </Box>
 
-            <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
+            <Box style={{ marginTop: '1em', marginBottom: '1em', display: 'flex', justifyContent: 'space-between' }}>
               <TextField
                 select
                 required
@@ -140,6 +141,16 @@ class InputForm extends Component<InputFormProps> {
                   <MenuItem key={index} value={font}>{font}</MenuItem>
                 ))}
               </TextField>
+              <Accordion style={{ width: '60%' }}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Font Demos</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <img style={{ width: '100%'}} src='font-sample.png' />
+                </AccordionDetails>
+              </Accordion>
             </Box>
 
             <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
@@ -195,7 +206,7 @@ class InputForm extends Component<InputFormProps> {
             <Button color="primary" variant="contained" type="submit">
               Calculate
             </Button>
-            <Button color="secondary" variant="contained" type="reset" style={{marginLeft: '1rem'}}>
+            <Button color="secondary" variant="contained" type="reset" style={{ marginLeft: '1rem' }}>
               Reset
             </Button>
           </Form>
