@@ -1,10 +1,12 @@
-import { Button, Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, TextField, InputAdornment, MenuItem } from '@material-ui/core';
-import { Form, Formik, validateYupSchema } from 'formik';
-import React, { Component } from 'react';
-import { calculateMinPointSize, calculateMaxPointSize, calculateMinWidth, getXFFromFont, InputValues, OutputValues } from '../calculator/calculate';
-import { distanceUnits, fontOptions } from "../calculator/options-definitions";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, InputAdornment, MenuItem, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Form, Formik } from 'formik';
+import React from 'react';
 import * as yup from 'yup';
+import { calculateMaxPointSize, calculateMinPointSize, getXFFromFont, InputValues, OutputValues } from '../calculator/calculate';
+import { distanceUnits, fontOptions } from "../calculator/options-definitions";
 import { roundPoints } from "../src/util";
+import { displayMeasures } from '../calculator/typical-display-measures';
 
 interface ResultsProps {
 	results: OutputValues;
@@ -123,6 +125,46 @@ export default function Results(props: ResultsProps) {
 			<Typography variant='h3' style={{ marginTop: '2rem' }}>Results</Typography>
 			<Typography style={{ marginTop: '1rem' }}>To achieve a maximum reading speed, the reader needs a display with a width larger than {minWidthString}.</Typography>
 
+			<Accordion style={{ marginTop: '1rem' }}>
+				<AccordionSummary
+					expandIcon={<ExpandMoreIcon />}
+				>
+					<Typography>See Dimensions of Typical Displays</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
+					<TableContainer component={Paper} style={{ margin: '1rem 0' }}>
+						<Table aria-label="point size for chosen font(s)">
+							<TableHead>
+								<TableRow>
+									<TableCell>Device </TableCell>
+									<TableCell>Diagonal Screen Size (inch)</TableCell>
+									<TableCell>Screen Width (inch)</TableCell>
+									<TableCell>Screen Width (cm)</TableCell>
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{ displayMeasures.map(({ device, diagonalInch, widthInch, widthCM }) => (
+									<TableRow key={diagonalInch}>
+										<TableCell scope="row">
+											{device}
+										</TableCell>
+										<TableCell scope="row">
+											{diagonalInch} in
+										</TableCell>
+										<TableCell scope="row">
+											{widthInch} in
+										</TableCell>
+										<TableCell scope="row">
+											{widthCM} cm
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</TableContainer>
+				</AccordionDetails>
+			</Accordion>
+
 			<Typography style={{ marginTop: '2rem' }}>The table below shows the point size you will need when reading on a display with {minWidthString} width using different fonts.</Typography>
 
 			<TableContainer component={Paper} style={{ maxWidth: '25rem', margin: '1rem 0' }}>
@@ -182,7 +224,7 @@ export default function Results(props: ResultsProps) {
 							error={props.touched.chosenDisplaySizeUnits && Boolean(props.errors.chosenDisplaySizeUnits)}
 							helperText={props.touched.chosenDisplaySizeUnits && props.errors.chosenDisplaySizeUnits}
 						>
-							{distanceUnits.map(({ value, label }, index) => (
+							{distanceUnits.map(({ label }, index) => (
 								<MenuItem key={index} value={label}>{label}</MenuItem>
 							))}
 						</TextField>
@@ -190,7 +232,7 @@ export default function Results(props: ResultsProps) {
 					</Form>}
 			</Formik>
 			<Box hidden={!showWarning}>
-				<Typography style={{marginTop: '2rem'}}>This display size is smaller than the minimum for the conditions specified. Please try a display size larger the the minimum of {minWidthString}</Typography>
+				<Typography style={{ marginTop: '2rem' }}>This display size is smaller than the minimum for the conditions specified. Please try a display size larger the the minimum of {minWidthString}</Typography>
 			</Box>
 
 			<Box hidden={!showMinMaxTable}>
