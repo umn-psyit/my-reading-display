@@ -3,30 +3,36 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ThemeChanger from '../components/theme-changer';
 
 const useStyles = makeStyles({
-    root: {
-        flexGrow: 1,
-      },
-      menuButton: {
-        marginRight: '1rem',
-      },
-      title: {
-        flexGrow: 1,
-      },
-    }
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: '1rem',
+  },
+  title: {
+    flexGrow: 1,
+  },
+}
 );
 
-export default function Navbar() {
-    const classes = useStyles();
+interface NavbarProps {
+  useDarkTheme: boolean,
+  setDarkTheme: (val: boolean) => void
+}
 
-    return (
-        <AppBar position="static" color="transparent">
-            <Toolbar>
-                <Link href="/" variant="h6" component="a" className={classes.title}>
-                    My Reading Display
-                </Link>
+export default function Navbar(props: NavbarProps) {
+  const { setDarkTheme, useDarkTheme } = props;
+  const classes = useStyles();
 
-                {/* <ThemeChanger /> */}
-            </Toolbar>
-        </AppBar>
-        )
-    }
+  return (
+    <AppBar position="static" color="transparent">
+      <Toolbar>
+        <Link href="/" variant="h6" component="a" className={classes.title}>
+          My Reading Display
+        </Link>
+
+        <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme}/>
+      </Toolbar>
+    </AppBar>
+  )
+}
