@@ -24,19 +24,19 @@ export const displayMeasures = [
         widthCM: 61,
     },
     {
-        device: 'Typical Phone',
+        device: 'Typical Smartphone',
         diagonalInch: 4.7,
         widthInch: 2.64,
         widthCM: 6.7,
     },
     {
-        device: 'Typical Phone',
+        device: 'Typical Smartphone',
         diagonalInch: 5.5,
         widthInch: 3.07,
         widthCM: 7.8,
     },
     {
-        device: 'Typical Phone',
+        device: 'Typical Smartphone',
         diagonalInch: 6.1,
         widthInch: 2.95,
         widthCM: 7.5,
