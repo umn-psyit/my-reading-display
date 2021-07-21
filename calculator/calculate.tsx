@@ -1,5 +1,6 @@
 import { NextRouter } from "next/router";
 import { centralFieldLossOptions, fontOptions } from "./options-definitions";
+import { sendResults } from "./send-results";
 
 class MinMax {
 	min: number;
@@ -228,11 +229,11 @@ export const calculate = (setResults: (results: OutputValues) => void, values: I
 		}
 	}
 
-	// if (!(minPoint instanceof MinMax) && !(maxPoint instanceof MinMax)) {
+	sendResults(VA, CPS, CFL, vd, values.selectedFont);
+
 	var results = new OutputValues(true, minWidth, minPoint, maxPoint, vd, CPS, VA);
 	setResults(results);
 	if (router !== undefined) {
 		router.push('#results');
 	}
-	// }
 };
