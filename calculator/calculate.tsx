@@ -135,7 +135,7 @@ export class OutputValues implements OutputValuesInterface {
 };
 
 export function calculateMinWidth(vd: number, CPS: number) {
-	return 0.013 * vd * Math.pow(10, CPS);
+	return 0.017 * vd * Math.pow(10, CPS);
 }
 
 export function calculateMinPointSize(vd: number, CPS: number, xf: number | undefined) {
@@ -149,7 +149,7 @@ export function calculateMaxPointSize(minWidth: number, wf: number | undefined) 
 	if (wf === undefined) {
 		throw new Error('Could not calculate maximum point size because wf is undefined');
 	}
-	return (minWidth / (0.32 * wf));
+	return (minWidth / (0.46 * wf));
 }
 
 export const calculate = (setResults: (results: OutputValues) => void, values: InputValuesInterface, router: NextRouter | undefined) => {
