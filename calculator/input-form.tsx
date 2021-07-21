@@ -1,11 +1,11 @@
-import { Accordion, Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Form, Formik } from 'formik';
 import { NextRouter } from 'next/dist/client/router';
 import React, { Component } from 'react';
-import { calculate, OutputValues, InputValues } from '../calculator/calculate';
+import { calculate, InputValues, OutputValues } from '../calculator/calculate';
 import { centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits } from '../calculator/options-definitions';
 import { validationSchema } from '../calculator/validation';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface InputFormProps {
   setResults: (results: OutputValues) => void;
@@ -148,7 +148,7 @@ class InputForm extends Component<InputFormProps> {
                   <Typography>Font Demos</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <img style={{ width: '100%'}} src='font-sample.png' />
+                  <img style={{ width: '100%' }} src='font-sample.png' />
                 </AccordionDetails>
               </Accordion>
             </Box>
