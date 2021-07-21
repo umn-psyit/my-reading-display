@@ -1,6 +1,7 @@
-import { Card, CardContent, Container, Link as MuiLink, makeStyles, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Container, Link as MuiLink, makeStyles, Typography } from '@material-ui/core';
 import Head from 'next/head';
 import React from 'react';
+import Logo from '../components/logo';
 
 const mrd = (<em>MyReadingDisplay</em>);
 
@@ -25,9 +26,16 @@ export default function Home() {
       <main>
         <Typography variant="h2" className={classes.welcomeText}>Welcome to {mrd}</Typography>
 
-        <Typography variant="body1" className={classes.bodyParagraph}>This easy calculator will help you choose the size of display and range of print sizes for effective reading. {mrd} is intended to help people with low vision and those assisting them in choosing an appropriate digital reading display.</Typography>
+        <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box style={{ width: '75%' }}><Typography variant="body1" className={classes.bodyParagraph}>This easy calculator will help you choose the size of display and range of print sizes for effective reading. {mrd} is intended to help people with low vision and those assisting them in choosing an appropriate digital reading display.</Typography>
 
-        <Typography variant="body1" className={classes.bodyParagraph}>Low vision refers to people who cannot achieve normal vision with the aid of glasses or contacts. It does not refer to people who have normal vision in one eye and reduced vision in the other eye.</Typography>
+            <Typography variant="body1" className={classes.bodyParagraph}>Low vision refers to people who cannot achieve normal vision with the aid of glasses or contacts. It does not refer to people who have normal vision in one eye and reduced vision in the other eye.</Typography>
+          </Box>
+
+          <Box style={{ width: '25%', marginTop: '1.5rem', marginLeft: '1rem' }}>
+            <Logo />
+          </Box>
+        </Box>
 
         <Typography variant="body1" className={classes.bodyParagraph}>After entering your vision characteristics and viewing preferences, the calculator will suggest the minimum display width you may need for effective reading and the corresponding print size for your choice of font. The calculator will also allow you to enter wider displays and show you the corresponding range of effective print sizes.</Typography>
 
