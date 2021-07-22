@@ -1,6 +1,8 @@
-import {AppBar, Toolbar, IconButton, Typography, makeStyles, Button, Link} from '@material-ui/core';
+import {
+  AppBar, Toolbar, IconButton, Typography, makeStyles, Button, Link,
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import ThemeChanger from '../components/theme-changer';
+import ThemeChanger from './theme-changer';
 
 const useStyles = makeStyles({
   root: {
@@ -12,20 +14,25 @@ const useStyles = makeStyles({
   title: {
     flexGrow: 1,
   },
-},
-);
+});
 
-export default function Navbar() {
+interface NavbarProps {
+  useDarkTheme: boolean,
+  setDarkTheme: (val: boolean) => void
+}
+
+export default function Navbar(props: NavbarProps) {
+  const { setDarkTheme, useDarkTheme } = props;
   const classes = useStyles();
 
   return (
     <AppBar position="static" color="transparent">
       <Toolbar>
         <Link href="/" variant="h6" component="a" className={classes.title}>
-                    My Reading Display
+          My Reading Display
         </Link>
 
-        {/* <ThemeChanger /> */}
+        <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
       </Toolbar>
     </AppBar>
   );

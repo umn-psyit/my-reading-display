@@ -5,28 +5,30 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
 import {useRouter} from 'next/router';
 
-const ThemeChanger = () => {
+interface ThemeChangerProps {
+    useDarkTheme: boolean,
+    setDarkTheme: (val: boolean) => void
+}
+
+const ThemeChanger = (props: ThemeChangerProps) => {
+  const { setDarkTheme, useDarkTheme } = props;
   const [mounted, setMounted] = useState(false);
-  const {theme, setTheme} = useTheme();
-  const router = useRouter();
 
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
 
   const onChangeTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
+    console.log('change');
+    console.log(useDarkTheme);
+    setDarkTheme(!useDarkTheme); // switches matieral-ui theme
   };
 
-  if (theme === 'light' || theme === undefined) {
+  if (useDarkTheme) {
     return (
       <div>
-        <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
-          <FontAwesomeIcon icon={faMoon} />
+        <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
+          <FontAwesomeIcon icon={faSun} />
         </IconButton>
       </div>
     );
@@ -34,8 +36,8 @@ const ThemeChanger = () => {
 
   return (
     <div>
-      <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
-        <FontAwesomeIcon icon={faSun} />
+      <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
+        <FontAwesomeIcon icon={faMoon} />
       </IconButton>
     </div>
   );

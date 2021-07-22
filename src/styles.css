@@ -1,0 +1,13 @@
+:root {
+    --background: white;
+    --text: rgba(0, 0, 0, 0.87);
+    --main: #ffcc33; /* Gopher Gold */
+    --secondary: #7a0019; /* Gopher Maroon */
+}
+
+[data-theme='dark'] {
+    --background: #181818;
+    --text: white;
+    --main: #7a0019; /* Gopher Maroon */
+    --secondary: #ffcc33; /* Gopher Gold */
+}
