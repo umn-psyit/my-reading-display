@@ -7,9 +7,8 @@ const CUTOFF = 20;
  * @returns rounded string based on the CUTOFF constant
  */
 export function roundPoints(input: number): string {
-    if (input >= CUTOFF) {
-        return input.toFixed(0);
-    } else {
-        return (Math.round(input * 2) / 2).toFixed(1);
-    }
+  if (input >= CUTOFF) {
+    return input.toFixed(0);
+  }
+  return (Math.round(input * 2) / 2).toFixed(1);
 }

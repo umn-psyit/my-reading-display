@@ -11,36 +11,36 @@ interface ThemeChangerProps {
 }
 
 const ThemeChanger = (props: ThemeChangerProps) => {
-    const { setDarkTheme, useDarkTheme } = props;
-    const [mounted, setMounted] = useState(false);
+  const { setDarkTheme, useDarkTheme } = props;
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => setMounted(true), []);
+  useEffect(() => setMounted(true), []);
 
-    if (!mounted) return null;
+  if (!mounted) return null;
 
-    const onChangeTheme = () => {
-        console.log('change');
-        console.log(useDarkTheme);
-        setDarkTheme(!useDarkTheme); // switches matieral-ui theme
-    }
+  const onChangeTheme = () => {
+    console.log('change');
+    console.log(useDarkTheme);
+    setDarkTheme(!useDarkTheme); // switches matieral-ui theme
+  };
 
-    if (useDarkTheme) {
-        return (
-            <div>
-                <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
-                    <FontAwesomeIcon icon={faSun} />
-                </IconButton>
-            </div>
-        )
-    }
-
+  if (useDarkTheme) {
     return (
-        <div>
-            <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
-                <FontAwesomeIcon icon={faMoon} />
-            </IconButton>
-        </div>
-    )
-}
+      <div>
+        <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
+          <FontAwesomeIcon icon={faSun} />
+        </IconButton>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
+        <FontAwesomeIcon icon={faMoon} />
+      </IconButton>
+    </div>
+  );
+};
 
 export default ThemeChanger;
