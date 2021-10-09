@@ -1,21 +1,21 @@
-import { Component } from 'react';
+import {Component} from 'react';
 import {
   Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableBody, Paper, TableContainer, TableHead, TableRow, TableCell,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { displayMeasures } from '../calculator/typical-display-measures';
+import {displayMeasures} from '../calculator/typical-display-measures';
 
 export default class TypicalDisplaysAccordion extends Component {
   render() {
     return (
-      <Accordion style={{ marginTop: '1rem' }}>
+      <Accordion style={{marginTop: '1rem'}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
         >
           <Typography>See Dimensions of Typical Displays</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <TableContainer component={Paper} style={{ margin: '1rem 0' }}>
+          <TableContainer component={Paper} style={{margin: '1rem 0'}}>
             <Table aria-label="point size for chosen font(s)">
               <TableHead>
                 <TableRow>

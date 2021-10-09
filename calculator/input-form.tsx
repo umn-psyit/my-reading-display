@@ -2,15 +2,15 @@ import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button, FormControl, FormControlLabel, FormLabel, InputAdornment, MenuItem, Radio, RadioGroup, TextField, Typography,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Form, Formik } from 'formik';
-import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
-import { calculate, InputValues, OutputValues } from './calculate';
-import { CalculatorContext } from './calculator-context';
+import {Form, Formik} from 'formik';
+import {useRouter} from 'next/router';
+import React, {useContext} from 'react';
+import {calculate, InputValues, OutputValues} from './calculate';
+import {CalculatorContext} from './calculator-context';
 import {
   centralFieldLossOptions, distanceUnits, fontOptions, viewingDistances, visionUnits,
 } from './options-definitions';
-import { validationSchema } from './validation';
+import {validationSchema} from './validation';
 
 const initialValues = {
   visualAcuityUnits: visionUnits[0].label,
@@ -60,14 +60,16 @@ export default function InputForm() {
         <Form
           onSubmit={props.handleSubmit}
           onReset={props.handleReset}
-          onChange={(e) => { props.handleChange(e); resetOutputValues(); }}
+          onChange={(e) => {
+            props.handleChange(e); resetOutputValues();
+          }}
         >
-          <Typography variant="body1" style={{ marginBottom: '1em', marginTop: '1em' }}>
+          <Typography variant="body1" style={{marginBottom: '1em', marginTop: '1em'}}>
             Please enter the reader's binocular visual acuity
             <strong>(required)</strong>
             .
           </Typography>
-          <Box style={{ marginTop: '1em' }}>
+          <Box style={{marginTop: '1em'}}>
             <TextField
               required
               id="visualAcuity"
@@ -80,7 +82,7 @@ export default function InputForm() {
               InputProps={{
                 startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.visualAcuityUnits}</InputAdornment>,
               }}
-              style={{ width: '13rem', margin: '0 1rem 0 0' }}
+              style={{width: '13rem', margin: '0 1rem 0 0'}}
             />
 
             <TextField
@@ -93,22 +95,22 @@ export default function InputForm() {
               onChange={props.handleChange}
               error={props.touched.visualAcuityUnits && Boolean(props.errors.visualAcuityUnits)}
               helperText={props.touched.visualAcuityUnits && props.errors.visualAcuityUnits}
-              style={{ width: '12rem' }}
+              style={{width: '12rem'}}
             >
-              {visionUnits.map(({ value, label }, index) => (
+              {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
               ))}
             </TextField>
           </Box>
 
-          <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
-            <Typography variant="body1" style={{ marginTop: '2em' }}>
+          <Box style={{marginTop: '1em', marginBottom: '1em'}}>
+            <Typography variant="body1" style={{marginTop: '2em'}}>
               Please enter the reader's critical print size measured by reading charts
               <strong>(optional)</strong>
               .
             </Typography>
 
-            <Typography variant="body1" style={{ marginBottom: '1em' }}>Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
+            <Typography variant="body1" style={{marginBottom: '1em'}}>Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
             <TextField
               id="criticalPrintSize"
               name="criticalPrintSize"
@@ -120,7 +122,7 @@ export default function InputForm() {
               InputProps={{
                 startAdornment: <InputAdornment position="start" aria-live="polite">{props.values.criticalPrintSizeUnits}</InputAdornment>,
               }}
-              style={{ width: '15rem', margin: '0 1rem 0 0' }}
+              style={{width: '15rem', margin: '0 1rem 0 0'}}
             />
 
             <TextField
@@ -130,16 +132,16 @@ export default function InputForm() {
               label="CPS Units"
               value={props.values.criticalPrintSizeUnits}
               onChange={props.handleChange}
-              style={{ width: '13rem' }}
+              style={{width: '13rem'}}
             >
-              {visionUnits.map(({ value, label }, index) => (
+              {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
               ))}
             </TextField>
           </Box>
 
           <Box>
-            <Typography variant="body1" style={{ marginBottom: '1em', marginTop: '2em' }}>Does the reader have central field loss?</Typography>
+            <Typography variant="body1" style={{marginBottom: '1em', marginTop: '2em'}}>Does the reader have central field loss?</Typography>
             <FormControl
               required
             >
@@ -152,7 +154,7 @@ export default function InputForm() {
                 value={props.values.hasCentralFieldLoss}
                 onChange={props.handleChange}
               >
-                {centralFieldLossOptions.map(({ label, CFL }, index) => (
+                {centralFieldLossOptions.map(({label, CFL}, index) => (
                   <FormControlLabel control={<Radio />} key={index} value={label} label={label} />
                 ))}
               </RadioGroup>
@@ -166,7 +168,7 @@ export default function InputForm() {
             <TextField
               select
               required
-              style={{ width: '12em' }}
+              style={{width: '12em'}}
               id="selectedFont"
               name="selectedFont"
               label="Selected Font"
@@ -174,27 +176,27 @@ export default function InputForm() {
               onChange={props.handleChange}
               onFocus={resetOutputValues}
             >
-              {fontOptions.map(({ font }, index) => (
+              {fontOptions.map(({font}, index) => (
                 <MenuItem key={index} value={font}>{font}</MenuItem>
               ))}
             </TextField>
-            <Accordion style={{ width: '70%' }}>
+            <Accordion style={{width: '70%'}}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
               >
                 <Typography>Font Demos</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <img style={{ width: '100%' }} src="font-sample.png" />
+                <img style={{width: '100%'}} src="font-sample.png" />
               </AccordionDetails>
             </Accordion>
           </Box>
 
-          <Box style={{ marginTop: '1em', marginBottom: '1em' }}>
+          <Box style={{marginTop: '1em', marginBottom: '1em'}}>
             <TextField
               select
               required
-              style={{ width: '12rem' }}
+              style={{width: '12rem'}}
               id="selectedViewingDistance"
               name="selectedViewingDistance"
               label="Viewing Distance"
@@ -202,7 +204,7 @@ export default function InputForm() {
               onChange={props.handleChange}
               onFocus={resetOutputValues}
             >
-              {viewingDistances.map(({ label }, index) => (
+              {viewingDistances.map(({label}, index) => (
                 <MenuItem key={index} value={label}>{label}</MenuItem>
               ))}
             </TextField>
@@ -219,7 +221,7 @@ export default function InputForm() {
                 InputProps={{
                   endAdornment: <InputAdornment position="end" aria-live="polite">{props.values.customViewDistanceUnits}</InputAdornment>,
                 }}
-                style={{ width: '10rem', margin: '0 1rem' }}
+                style={{width: '10rem', margin: '0 1rem'}}
               />
               <TextField
                 select
@@ -229,11 +231,11 @@ export default function InputForm() {
                 label="View Distance Units"
                 value={props.values.customViewDistanceUnits}
                 onChange={props.handleChange}
-                style={{ width: '13rem' }}
+                style={{width: '13rem'}}
                 error={props.touched.customViewDistanceUnits && Boolean(props.errors.customViewDistanceUnits)}
                 helperText={props.touched.customViewDistanceUnits && props.errors.customViewDistanceUnits}
               >
-                {distanceUnits.map(({ value, label }, index) => (
+                {distanceUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
                 ))}
               </TextField>
@@ -243,7 +245,7 @@ export default function InputForm() {
           <Button color="primary" variant="contained" type="submit">
             Calculate
           </Button>
-          <Button color="secondary" variant="contained" type="reset" style={{ marginLeft: '1rem' }}>
+          <Button color="secondary" variant="contained" type="reset" style={{marginLeft: '1rem'}}>
             Reset
           </Button>
         </Form>

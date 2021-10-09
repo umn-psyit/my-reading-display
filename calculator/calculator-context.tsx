@@ -1,6 +1,6 @@
-import { createContext } from 'react';
-import { InputValues, OutputValues } from './calculate';
-import { FurtherChoice } from './results';
+import {createContext} from 'react';
+import {InputValues, OutputValues} from './calculate';
+import {FurtherChoice} from './results';
 
 export type CalculatorContextType = {
     outputValues: OutputValues;

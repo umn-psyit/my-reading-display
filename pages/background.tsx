@@ -1,11 +1,11 @@
 import {
   Button, Card, CardContent, List, Link as MuiLink, ListItem, ListItemText, Typography, makeStyles, createStyles, Theme, Container, ThemeProvider,
 } from '@material-ui/core';
-import { useTheme } from 'next-themes';
+import {useTheme} from 'next-themes';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import { darkTheme, lightTheme } from '../src/theme';
+import {darkTheme, lightTheme} from '../src/theme';
 
 const mrd = (<em>MyReadingDisplay</em>);
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 export default function Background() {
   const classes = useStyles();
-  const { theme } = useTheme();
+  const {theme} = useTheme();
 
   return (
     <Container maxWidth="md" disableGutters>

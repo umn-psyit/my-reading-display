@@ -11,7 +11,7 @@ interface ThemeChangerProps {
 }
 
 const ThemeChanger = (props: ThemeChangerProps) => {
-  const { setDarkTheme, useDarkTheme } = props;
+  const {setDarkTheme, useDarkTheme} = props;
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);

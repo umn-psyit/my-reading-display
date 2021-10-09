@@ -20,5 +20,11 @@ module.exports = {
     '@typescript-eslint',
   ],
   'rules': {
+    'require-jsdoc': 'off',
+  },
+  'settings': {
+    'react': {
+      'version': 'detect',
+    },
   },
 };

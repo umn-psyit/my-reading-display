@@ -31,8 +31,8 @@ export default function Home() {
           {mrd}
         </Typography>
 
-        <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box style={{ width: '75%' }}>
+        <Box style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Box style={{width: '75%'}}>
             <Typography variant="body1" className={classes.bodyParagraph}>
               This easy calculator will help you choose the size of display and range of print sizes for effective reading.
               {mrd}
@@ -43,7 +43,7 @@ export default function Home() {
             <Typography variant="body1" className={classes.bodyParagraph}>Low vision refers to people who cannot achieve normal vision with the aid of glasses or contacts. It does not refer to people who have normal vision in one eye and reduced vision in the other eye.</Typography>
           </Box>
 
-          <Box style={{ width: '25%', marginTop: '1.5rem', marginLeft: '1rem' }}>
+          <Box style={{width: '25%', marginTop: '1.5rem', marginLeft: '1rem'}}>
             <Logo />
           </Box>
         </Box>
@@ -79,7 +79,7 @@ export default function Home() {
       </main>
 
       <footer>
-        <Typography variant="body1" style={{ margin: '3rem 0 1rem 0', maxWidth: '30rem' }}>
+        <Typography variant="body1" style={{margin: '3rem 0 1rem 0', maxWidth: '30rem'}}>
           Contact information for questions/comments:
           <MuiLink href="mailto:lowvis@umn.edu">lowvis@umn.edu</MuiLink>
         </Typography>

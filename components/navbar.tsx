@@ -22,7 +22,7 @@ interface NavbarProps {
 }
 
 export default function Navbar(props: NavbarProps) {
-  const { setDarkTheme, useDarkTheme } = props;
+  const {setDarkTheme, useDarkTheme} = props;
   const classes = useStyles();
 
   return (

@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import {Container} from '@material-ui/core';
 import Head from 'next/head';
 import React from 'react';
 import CalculatorComponent from '../components/calculator-component';

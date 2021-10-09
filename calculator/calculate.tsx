@@ -1,6 +1,6 @@
-import { NextRouter } from 'next/router';
-import { centralFieldLossOptions, fontOptions } from './options-definitions';
-import { sendResults } from './send-results';
+import {NextRouter} from 'next/router';
+import {centralFieldLossOptions, fontOptions} from './options-definitions';
+import {sendResults} from './send-results';
 
 class MinMax {
 	min: number;
@@ -21,7 +21,7 @@ export function getXFFromFont(selectedFont: string): number | MinMax {
     return new MinMax(min, max);
   }
 
-  fontOptions.forEach(({ font, xf }) => {
+  fontOptions.forEach(({font, xf}) => {
     if (font.normalize() === selectedFont.normalize() && xf !== undefined) {
       result = xf;
     }
@@ -42,7 +42,7 @@ function getWFFromFont(selectedFont: string): number | MinMax {
   }
 
   let result = -1;
-  fontOptions.forEach(({ font, wf }) => {
+  fontOptions.forEach(({font, wf}) => {
     if (font.normalize() === selectedFont.normalize() && wf !== undefined) {
       result = wf;
     }
@@ -56,7 +56,7 @@ function getWFFromFont(selectedFont: string): number | MinMax {
 
 function getCFLFromString(centralFieldLoss: string): number {
   let result = -1;
-  centralFieldLossOptions.forEach(({ CFL, label }) => {
+  centralFieldLossOptions.forEach(({CFL, label}) => {
     if (centralFieldLoss.normalize() === label.normalize()) {
       result = CFL;
     }

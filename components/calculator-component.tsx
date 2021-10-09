@@ -1,9 +1,9 @@
 import React from 'react';
-import { CalculatorContext, CalculatorContextType } from '../calculator/calculator-context';
+import {CalculatorContext, CalculatorContextType} from '../calculator/calculator-context';
 import InputForm from '../calculator/input-form';
-import Results, { FurtherChoice } from '../calculator/results';
-import { InputValues, OutputValues } from '../calculator/calculate';
-import { distanceUnits } from '../calculator/options-definitions';
+import Results, {FurtherChoice} from '../calculator/results';
+import {InputValues, OutputValues} from '../calculator/calculate';
+import {distanceUnits} from '../calculator/options-definitions';
 
 export default class CalculatorComponent extends React.Component {
   state: CalculatorContextType;

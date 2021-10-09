@@ -1,7 +1,7 @@
 import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
-import { Typography, ServerStyleSheets } from '@material-ui/core';
+import {Typography, ServerStyleSheets} from '@material-ui/core';
 import React from 'react';
 import ThemeChanger from '../components/theme-changer';
 
