@@ -38,6 +38,6 @@ export const snellenImperialViewLimitCPS = {
 };
 
 export interface Limit {
-	min: number;
-	max: number;
+  min: number;
+  max: number;
 }

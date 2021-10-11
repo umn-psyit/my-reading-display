@@ -1,23 +1,24 @@
-import {NextRouter} from 'next/router';
 import {centralFieldLossOptions, fontOptions} from './options-definitions';
 import {sendResults} from './send-results';
 
 class MinMax {
-	min: number;
+  min: number;
 
-	max: number;
+  max: number;
 
-	constructor(min: number, max: number) {
-	  this.min = min;
-	  this.max = max;
-	}
+  constructor(min: number, max: number) {
+    this.min = min;
+    this.max = max;
+  }
 }
 
 export function getXFFromFont(selectedFont: string): number | MinMax {
   let result = -1;
   if (selectedFont.normalize() === 'No Preference') {
-    const min = Math.min.apply(Math, fontOptions.map((o) => ((o.xf === undefined) ? Number.MAX_VALUE : o.xf)));
-    const max = Math.max.apply(Math, fontOptions.map((o) => ((o.xf === undefined) ? Number.MIN_VALUE : o.xf)));
+    const min = Math.min(...fontOptions.map((o) =>
+      ((o.xf === undefined) ? Number.MAX_VALUE : o.xf)));
+    const max = Math.max(...fontOptions.map((o) =>
+      ((o.xf === undefined) ? Number.MIN_VALUE : o.xf)));
     return new MinMax(min, max);
   }
 
@@ -36,8 +37,10 @@ export function getXFFromFont(selectedFont: string): number | MinMax {
 
 function getWFFromFont(selectedFont: string): number | MinMax {
   if (selectedFont.normalize() === 'No Preference') {
-    const min = Math.min.apply(Math, fontOptions.map((o) => ((o.wf === undefined) ? Number.MAX_VALUE : o.wf)));
-    const max = Math.max.apply(Math, fontOptions.map((o) => ((o.wf === undefined) ? Number.MIN_VALUE : o.wf)));
+    const min = Math.min(...fontOptions.map((o) =>
+      ((o.wf === undefined) ? Number.MAX_VALUE : o.wf)));
+    const max = Math.max(...fontOptions.map((o) =>
+      ((o.wf === undefined) ? Number.MIN_VALUE : o.wf)));
     return new MinMax(min, max);
   }
 
@@ -65,103 +68,113 @@ function getCFLFromString(centralFieldLoss: string): number {
     return result;
   }
 
-  throw new Error(`Could not find CFS option: ${centralFieldLoss} result: ${result}`);
+  throw new Error(`Could not find CFS option:
+  ${centralFieldLoss} result: ${result}`);
 }
 
 export interface InputValuesInterface {
-	visualAcuityUnits: string;
-	visualAcuity: string;
-	criticalPrintSizeUnits: string;
-	criticalPrintSize: string;
-	hasCentralFieldLoss: string;
-	selectedFont: string;
-	selectedViewingDistance: string;
-	customViewDistance: number;
-	customViewDistanceUnits: string;
+  visualAcuityUnits: string;
+  visualAcuity: string;
+  criticalPrintSizeUnits: string;
+  criticalPrintSize: string;
+  hasCentralFieldLoss: string;
+  selectedFont: string;
+  selectedViewingDistance: string;
+  customViewDistance: number;
+  customViewDistanceUnits: string;
 }
 
 export class InputValues implements InputValuesInterface {
-	visualAcuityUnits: string;
+  visualAcuityUnits: string;
 
-	visualAcuity: string;
+  visualAcuity: string;
 
-	criticalPrintSizeUnits: string;
+  criticalPrintSizeUnits: string;
 
-	criticalPrintSize: string;
+  criticalPrintSize: string;
 
-	hasCentralFieldLoss: string;
+  hasCentralFieldLoss: string;
 
-	selectedFont: string;
+  selectedFont: string;
 
-	selectedViewingDistance: string;
+  selectedViewingDistance: string;
 
-	customViewDistance: number;
+  customViewDistance: number;
 
-	customViewDistanceUnits: string;
+  customViewDistanceUnits: string;
 
-	constructor(visualAcuityUnits: string, visualAcuity: string, criticalPrintSizeUnits: string, criticalPrintSize: string, hasCentralFieldLoss: string, selectedFont: string, selectedViewingDistance: string, customViewDistance: number, customViewDistanceUnits: string) {
-	  this.visualAcuityUnits = visualAcuityUnits;
-	  this.visualAcuity = visualAcuity;
-	  this.criticalPrintSizeUnits = criticalPrintSizeUnits;
-	  this.criticalPrintSize = criticalPrintSize;
-	  this.hasCentralFieldLoss = hasCentralFieldLoss;
-	  this.selectedFont = selectedFont;
-	  this.selectedViewingDistance = selectedViewingDistance;
-	  this.customViewDistance = customViewDistance;
-	  this.customViewDistanceUnits = customViewDistanceUnits;
-	}
+  constructor(visualAcuityUnits: string, visualAcuity: string,
+      criticalPrintSizeUnits: string, criticalPrintSize: string,
+      hasCentralFieldLoss: string, selectedFont: string,
+      selectedViewingDistance: string, customViewDistance: number,
+      customViewDistanceUnits: string) {
+    this.visualAcuityUnits = visualAcuityUnits;
+    this.visualAcuity = visualAcuity;
+    this.criticalPrintSizeUnits = criticalPrintSizeUnits;
+    this.criticalPrintSize = criticalPrintSize;
+    this.hasCentralFieldLoss = hasCentralFieldLoss;
+    this.selectedFont = selectedFont;
+    this.selectedViewingDistance = selectedViewingDistance;
+    this.customViewDistance = customViewDistance;
+    this.customViewDistanceUnits = customViewDistanceUnits;
+  }
 }
 
 export interface OutputValuesInterface {
-	show: boolean;
-	minWidth: number;
-	minPoint: number;
-	maxPoint: number;
-	viewDistance: number;
-	CPS: number;
-	VA: number;
+  show: boolean;
+  minWidth: number;
+  minPoint: number;
+  maxPoint: number;
+  viewDistance: number;
+  CPS: number;
+  VA: number;
 }
 
 export class OutputValues implements OutputValuesInterface {
-	show: boolean;
+  show: boolean;
 
-	minWidth: number;
+  minWidth: number;
 
-	minPoint: number;
+  minPoint: number;
 
-	maxPoint: number;
+  maxPoint: number;
 
-	viewDistance: number;
+  viewDistance: number;
 
-	CPS: number;
+  CPS: number;
 
-	VA: number;
+  VA: number;
 
-	constructor(show: boolean, minWidth: number, minPoint: number, maxPoint: number, viewDistance: number, CPS: number, VA: number) {
-	  this.show = show;
-	  this.minWidth = minWidth;
-	  this.minPoint = minPoint;
-	  this.maxPoint = maxPoint;
-	  this.viewDistance = viewDistance;
-	  this.CPS = CPS;
-	  this.VA = VA;
-	}
+  constructor(show: boolean, minWidth: number, minPoint: number,
+      maxPoint: number, viewDistance: number, CPS: number, VA: number) {
+    this.show = show;
+    this.minWidth = minWidth;
+    this.minPoint = minPoint;
+    this.maxPoint = maxPoint;
+    this.viewDistance = viewDistance;
+    this.CPS = CPS;
+    this.VA = VA;
+  }
 }
 
 export function calculateMinWidth(vd: number, CPS: number) {
   return 0.017 * vd * Math.pow(10, CPS);
 }
 
-export function calculateMinPointSize(vd: number, CPS: number, xf: number | undefined) {
+export function calculateMinPointSize(vd: number, CPS: number,
+    xf: number | undefined) {
   if (xf === undefined) {
-    throw new Error('Could not calculate minimum point size because xf is undefined');
+    throw new Error('Could not calculate minimum point size ' +
+      'because xf is undefined');
   }
   return (0.04 * vd * Math.pow(10, CPS)) / xf;
 }
 
-export function calculateMaxPointSize(minWidth: number, wf: number | undefined) {
+export function calculateMaxPointSize(minWidth: number,
+    wf: number | undefined) {
   if (wf === undefined) {
-    throw new Error('Could not calculate maximum point size because wf is undefined');
+    throw new Error('Could not calculate maximum point size ' +
+    'because wf is undefined');
   }
   return (minWidth / (0.46 * wf));
 }

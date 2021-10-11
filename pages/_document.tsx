@@ -1,9 +1,8 @@
 import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
-import {Typography, ServerStyleSheets} from '@material-ui/core';
+import {ServerStyleSheets} from '@material-ui/core';
 import React from 'react';
-import ThemeChanger from '../components/theme-changer';
 
 export default class MyDocument extends Document {
   render() {
@@ -13,7 +12,9 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet" />
           <link rel="shortcut icon" href="favicon.ico" />
-          <meta name="description" content="Calculate the optimal display and print size to help people with low vision read effectively." />
+          <meta name="description"
+            content="Calculate the optimal display and print size to help
+            people with low vision read effectively." />
         </Head>
         <body>
           <Main />
@@ -49,7 +50,8 @@ MyDocument.getInitialProps = async (ctx) => {
   // 3. app.render
   // 4. page.render
 
-  // Render app and page and get the context of the page with collected side effects.
+  // Render app and page and get the context of the page with
+  // collected side effects.
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
@@ -62,6 +64,7 @@ MyDocument.getInitialProps = async (ctx) => {
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+    styles: [...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement()],
   };
 };

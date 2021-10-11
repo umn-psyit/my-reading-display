@@ -1,6 +1,8 @@
 import {Component} from 'react';
+import React from 'react';
 import {
-  Accordion, AccordionDetails, AccordionSummary, Typography, Table, TableBody, Paper, TableContainer, TableHead, TableRow, TableCell,
+  Accordion, AccordionDetails, AccordionSummary, Typography,
+  Table, TableBody, Paper, TableContainer, TableHead, TableRow, TableCell,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {displayMeasures} from '../calculator/typical-display-measures';

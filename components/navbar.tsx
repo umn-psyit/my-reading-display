@@ -1,8 +1,8 @@
 import {
-  AppBar, Toolbar, IconButton, Typography, makeStyles, Button, Link,
+  AppBar, Toolbar, makeStyles, Link,
 } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import ThemeChanger from './theme-changer';
+import React from 'react';
 
 const useStyles = makeStyles({
   root: {

@@ -1,9 +1,8 @@
-import {useTheme} from 'next-themes';
 import {useEffect, useState} from 'react';
 import {IconButton} from '@material-ui/core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
-import {useRouter} from 'next/router';
+import React from 'react';
 
 interface ThemeChangerProps {
     useDarkTheme: boolean,

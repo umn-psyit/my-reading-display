@@ -6,15 +6,15 @@ export type CalculatorContextType = {
     outputValues: OutputValues;
     setOutputValues: (values: OutputValues) => void;
     resetOutputValues: () => void;
-	inputValues: InputValues;
+  inputValues: InputValues;
     setInputValues: (values: InputValues) => void;
     resetInputValues: () => void;
-	showMinMaxTable: boolean;
+  showMinMaxTable: boolean;
     setShowMinMaxTable: (showMinMaxTable: boolean) => void;
-	furtherChoices: FurtherChoice;
+  furtherChoices: FurtherChoice;
     setFurtherChoices: (choices: FurtherChoice) => void;
     resetFurtherChoices: () => void;
-	showWarning: boolean;
+  showWarning: boolean;
     setShowWarning: (showWarning: boolean) => void;
 }
 
