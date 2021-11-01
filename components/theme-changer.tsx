@@ -18,8 +18,7 @@ const ThemeChanger = (props: ThemeChangerProps) => {
   if (!mounted) return null;
 
   const onChangeTheme = () => {
-    console.log('change');
-    console.log(useDarkTheme);
+    localStorage.setItem('mrd-theme', String(!useDarkTheme));
     setDarkTheme(!useDarkTheme); // switches matieral-ui theme
   };
 

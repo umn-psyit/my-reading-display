@@ -9,16 +9,19 @@ import '../src/styles.css';
 import {ThemeProvider as DarkLightThemeProvider} from 'next-themes';
 import {darkTheme, lightTheme} from '../src/theme';
 
-export default function MyReadingDisplayApp({Component, pageProps}: AppProps) {
+
+function MyReadingDisplayApp({Component, pageProps}: AppProps) {
   const [mounted, setMounted] = useState(false);
   const [useDarkTheme, setDarkTheme] = useState(false);
-  console.log(`useDarkTheme: ${useDarkTheme}`);
-
   useEffect(() => setMounted(true), []);
 
-  const exTheme = createTheme(useDarkTheme ? darkTheme : lightTheme);
+  useEffect(function() {
+    setDarkTheme(localStorage.getItem('mrd-theme') === 'true');
+  });
 
   if (!mounted) return null;
+
+  const exTheme = createTheme(useDarkTheme ? darkTheme : lightTheme);
 
   return (
     <DarkLightThemeProvider enableSystem>
@@ -32,3 +35,5 @@ export default function MyReadingDisplayApp({Component, pageProps}: AppProps) {
     </DarkLightThemeProvider>
   );
 }
+
+export default MyReadingDisplayApp;
