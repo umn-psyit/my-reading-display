@@ -17,7 +17,7 @@ function MyReadingDisplayApp({Component, pageProps}: AppProps) {
 
   useEffect(function() {
     setDarkTheme(localStorage.getItem('mrd-theme') === 'true');
-  });
+  }, []);
 
   if (!mounted) return null;
 
