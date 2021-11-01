@@ -27,8 +27,7 @@ export default function Home() {
 
       <main>
         <Typography variant="h2" className={classes.welcomeText}>
-          Welcome to
-          {mrd}
+          Welcome to {mrd}
         </Typography>
 
         <Box style={{display: 'flex', justifyContent: 'space-between'}}>

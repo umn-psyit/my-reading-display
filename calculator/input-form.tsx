@@ -1,7 +1,7 @@
 import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button,
   FormControl, FormControlLabel, FormLabel, InputAdornment,
-  MenuItem, Radio, RadioGroup, TextField, Typography,
+  MenuItem, Radio, RadioGroup, TextField, Typography
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Form, Formik, FormikProps} from 'formik';
@@ -14,6 +14,8 @@ import {
   viewingDistances, visionUnits,
 } from './options-definitions';
 import {validationSchema} from './validation';
+import Image from "next/image";
+import fontSampleImg from '../public/font-sample.png';
 
 const initialValues = {
   visualAcuityUnits: visionUnits[0].label,
@@ -70,8 +72,7 @@ export default function InputForm() {
         >
           <Typography variant="body1" style={{marginBottom: '1em',
             marginTop: '1em'}}>
-            Please enter the reader&apos;s binocular visual acuity
-            <strong>(required)</strong>
+            Please enter the reader&apos;s binocular visual acuity <strong>(required)</strong>
             .
           </Typography>
           <Box style={{marginTop: '1em'}}>
@@ -117,14 +118,11 @@ export default function InputForm() {
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
             <Typography variant="body1" style={{marginTop: '2em'}}>
               Please enter the reader&apos;s critical print size measured
-              by reading charts
-              <strong>(optional)</strong>
-              .
+              by reading charts <strong>(optional)</strong>.
             </Typography>
 
             <Typography variant="body1" style={{marginBottom: '1em'}}>
-              Critical print size refers to the smallest print size that
-              allows one to read at their maximum reading speed.</Typography>
+              Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
             <TextField
               id="criticalPrintSize"
               name="criticalPrintSize"
@@ -211,7 +209,9 @@ export default function InputForm() {
                 <Typography>Font Demos</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <img style={{width: '100%'}} src="font-sample.png" />
+                <Image src={fontSampleImg}
+                placeholder="blur"
+                alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'"/>
               </AccordionDetails>
             </Accordion>
           </Box>
