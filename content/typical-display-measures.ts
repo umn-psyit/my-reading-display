@@ -1,4 +1,15 @@
+// change this to true if you want to display the table in the results.
 export const showDisplayMeasures = false;
+
+export const displayMeasuresTitle = 'See Dimensions of Typical Displays';
+
+export const columnTitles = [
+  'Device',
+  'Diagonal Screen Size (inch)',
+  'Screen Width (inch)',
+  'Screen Width (cm)'
+];
+
 export const displayMeasures = [
   {
     device: 'Typical Laptop',

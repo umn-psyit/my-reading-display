@@ -15,6 +15,7 @@ import {distanceUnits, fontOptions} from '../content/options-definitions';
 import {roundPoints} from '../src/util';
 import TypicalDisplaySizeAccordion from '../components/display-sizes-accordion';
 import {CalculatorContext} from './calculator-context';
+import Link from 'next/link';
 
 const ResetInputValues = () => {
   const { resetForm } = useFormikContext();

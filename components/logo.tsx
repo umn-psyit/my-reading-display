@@ -6,7 +6,7 @@ export default function Logo() {
     <svg version="1.1" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
       <g transform="matrix(1.3333 0 0 -1.3333 0 720)">
         <g transform="translate(-210)">
-          <path d="m210 540h540v-540h-540z" />
+          {/* <path d="m210 540h540v-540h-540z" /> */}
           <path d="m419.98 139.47h107.84l6.9254-6.9256v-34.626h-121.69v34.626z" fill="#fff" />
           <g transform="matrix(.00012334 0 0 -.00012334 413.06 139.47)"><path d="m56148 0h8.7429e5l56148 56148v2.8073e5h-9.8659e5v-2.8073e5z" fill="none" stroke="#7f7f7f" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="19050" /></g>
           <path d="m248.23 409.21c0 29.795 24.154 53.949 53.949 53.949h355.64c29.795 0 53.949-24.154 53.949-53.949v-215.79c0-29.795-24.154-53.949-53.949-53.949h-355.64c-29.795 0-53.949 24.154-53.949 53.949z" fill="#fff" />

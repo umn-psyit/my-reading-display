@@ -5,7 +5,7 @@ import {
   Table, TableBody, Paper, TableContainer, TableHead, TableRow, TableCell,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {displayMeasures, showDisplayMeasures} from '../content/typical-display-measures';
+import {displayMeasures, showDisplayMeasures, displayMeasuresTitle, columnTitles} from '../content/typical-display-measures';
 
 export default class TypicalDisplaysAccordion extends Component {
   render() {
@@ -17,17 +17,17 @@ export default class TypicalDisplaysAccordion extends Component {
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
         >
-          <Typography>See Dimensions of Typical Displays</Typography>
+          <Typography>{displayMeasuresTitle}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper} style={{margin: '1rem 0'}}>
             <Table aria-label="point size for chosen font(s)">
               <TableHead>
                 <TableRow>
-                  <TableCell>Device </TableCell>
-                  <TableCell>Diagonal Screen Size (inch)</TableCell>
-                  <TableCell>Screen Width (inch)</TableCell>
-                  <TableCell>Screen Width (cm)</TableCell>
+                  <TableCell>{columnTitles[0]}</TableCell>
+                  <TableCell>{columnTitles[1]}</TableCell>
+                  <TableCell>{columnTitles[2]}</TableCell>
+                  <TableCell>{columnTitles[3]}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
