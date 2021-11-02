@@ -3,6 +3,7 @@ import {
   Drawer, createStyles, Theme, List, ListItem
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
 import ThemeChanger from './theme-changer';
 import React from 'react';
 import zIndex from '@material-ui/core/styles/zIndex';
@@ -45,6 +46,9 @@ const useStyles = makeStyles(() =>
     mobile_menu: {
       color: 'inherit'
     },
+    drawerItem: {
+      // justifyContent: 'right'
+    }
 }));
 
 interface NavbarProps {
@@ -70,8 +74,8 @@ export default function Navbar(props: NavbarProps) {
   const appBarColor: string = useDarkTheme ? '#181818' : '#ffffff';
 
   return (
-    <Box className={classes.root}>
-      <AppBar style={{zIndex: 1201}}>
+    <Box className={classes.root} style={{zIndex: 1201}}>
+      <AppBar color="inherit" style={{zIndex: 1202}}>
         <Toolbar>
           <Link href="/" variant="h6" component="a" className={classes.title}>
             My Reading Display
@@ -80,7 +84,7 @@ export default function Navbar(props: NavbarProps) {
           <Box className={classes.menuItems}>
               <Hidden mdUp>
                   <IconButton onClick={handleDrawerToggle} edge="start" color="inherit" aria-label="menu" className={classes.mobile_menu}> 
-                      <MenuIcon />
+                      {open ? <CloseIcon /> : <MenuIcon />}
                   </IconButton>
               </Hidden>
               <Hidden smDown>
@@ -104,14 +108,14 @@ export default function Navbar(props: NavbarProps) {
                 <List>
                     {PAGES.map((page) => {
                         return (
-                            <ListItem key={page.slug}>
+                            <ListItem key={page.slug} className={classes.drawerItem}>
                                 <Link href={page.slug}>
                                     <Button onClick={handleDrawerToggle}>{page.name}</Button>
                                 </Link>
                             </ListItem>
                         );
                     })}
-                    <ListItem>
+                    <ListItem className={classes.drawerItem}>
                       <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
                     </ListItem>
                 </List>
