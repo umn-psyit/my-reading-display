@@ -6,7 +6,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import ThemeChanger from './theme-changer';
 import React from 'react';
-import zIndex from '@material-ui/core/styles/zIndex';
 
 class PageInfo {
   slug: string;
@@ -71,8 +70,6 @@ export default function Navbar(props: NavbarProps) {
     }
   };
   
-  const appBarColor: string = useDarkTheme ? '#181818' : '#ffffff';
-
   return (
     <Box className={classes.root} style={{zIndex: 1201}}>
       <AppBar color="inherit" style={{zIndex: 1202}}>

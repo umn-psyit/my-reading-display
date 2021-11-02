@@ -247,8 +247,7 @@ export default function Results() {
         <Typography style={{marginTop: '2rem'}}>
           This display size is smaller than the minimum for the
           conditions specified. Please try a display size larger
-          the the minimum of
-          {minWidthString}
+          the the minimum of {minWidthString}
         </Typography>
       </Box>
 
