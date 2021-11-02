@@ -5,10 +5,13 @@ import {
   Table, TableBody, Paper, TableContainer, TableHead, TableRow, TableCell,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {displayMeasures} from '../calculator/typical-display-measures';
+import {displayMeasures, showDisplayMeasures} from '../content/typical-display-measures';
 
 export default class TypicalDisplaysAccordion extends Component {
   render() {
+    if (!showDisplayMeasures) {
+      return null;
+    }
     return (
       <Accordion style={{marginTop: '1rem'}}>
         <AccordionSummary

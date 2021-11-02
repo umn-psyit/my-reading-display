@@ -1,3 +1,4 @@
+export const showDisplayMeasures = false;
 export const displayMeasures = [
   {
     device: 'Typical Laptop',

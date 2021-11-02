@@ -11,7 +11,7 @@ import {
   calculateMaxPointSize, calculateMinPointSize,
   getXFFromFont, InputValues, OutputValues,
 } from './calculate';
-import {distanceUnits, fontOptions} from './options-definitions';
+import {distanceUnits, fontOptions} from '../content/options-definitions';
 import {roundPoints} from '../src/util';
 import TypicalDisplaySizeAccordion from '../components/display-sizes-accordion';
 import {CalculatorContext} from './calculator-context';
@@ -160,7 +160,7 @@ export default function Results() {
   };
 
   const handleReset = (values: FurtherChoice) => {
-    
+
   }
 
   return (

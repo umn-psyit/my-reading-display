@@ -2,11 +2,11 @@ import * as yup from 'yup';
 import {
   centralFieldLossOptions, distanceUnits, fontOptions,
   viewingDistances, visionUnits,
-} from './options-definitions';
+} from '../content/options-definitions';
 import {
   logMARLimitVA, snellenImperialViewLimitVA, snellenMetricViewLimitVA,
   logMARLimitCPS, snellenImperialViewLimitCPS, snellenMetricViewLimitCPS,
-} from './limits';
+} from '../content/limits';
 
 const visualAcuityValidation = (id: string, label: string) => yup
     .number()

@@ -4,7 +4,7 @@ import {CalculatorContext, CalculatorContextType}
 import InputForm from '../calculator/input-form';
 import Results, {FurtherChoice} from '../calculator/results';
 import {InputValues, OutputValues} from '../calculator/calculate';
-import {distanceUnits} from '../calculator/options-definitions';
+import {distanceUnits} from '../content/options-definitions';
 
 export default class CalculatorComponent extends React.Component {
   state: CalculatorContextType;

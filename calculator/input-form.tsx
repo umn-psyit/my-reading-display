@@ -12,7 +12,7 @@ import {CalculatorContext} from './calculator-context';
 import {
   centralFieldLossOptions, distanceUnits, fontOptions,
   viewingDistances, visionUnits,
-} from './options-definitions';
+} from '../content/options-definitions';
 import {validationSchema} from './validation';
 import Image from "next/image";
 import fontSampleImg from '../public/font-sample.png';

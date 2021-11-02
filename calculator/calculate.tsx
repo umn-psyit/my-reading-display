@@ -1,4 +1,4 @@
-import {centralFieldLossOptions, fontOptions} from './options-definitions';
+import {centralFieldLossOptions, fontOptions} from '../content/options-definitions';
 import {sendResults} from './send-results';
 
 class MinMax {
