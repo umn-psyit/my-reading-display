@@ -3,8 +3,8 @@ import {
   TableBody, TableCell, TableContainer, TableHead,
   TableRow, TextField, Typography,
 } from '@material-ui/core';
-import {Form, Formik, FormikProps} from 'formik';
-import React, {useContext} from 'react';
+import {Form, Formik, FormikProps, useFormikContext} from 'formik';
+import React, {useContext, useEffect} from 'react';
 import * as yup from 'yup';
 import {useRouter} from 'next/dist/client/router';
 import {
@@ -15,6 +15,17 @@ import {distanceUnits, fontOptions} from './options-definitions';
 import {roundPoints} from '../src/util';
 import TypicalDisplaySizeAccordion from '../components/display-sizes-accordion';
 import {CalculatorContext} from './calculator-context';
+
+const ResetInputValues = () => {
+  const { resetForm } = useFormikContext();
+  const { furtherChoices } = useContext(CalculatorContext);
+  useEffect(() => {
+    if (furtherChoices.chosenDisplaySize === -1 || furtherChoices.chosenDisplaySize === '') {
+      resetForm();
+    }
+  }, [furtherChoices, resetForm] );
+  return null;
+}
 
 interface PointSizeTableRows {
   font: string;
@@ -57,7 +68,7 @@ function getMinMaxTableData(inputs: InputValues, results: OutputValues,
     furtherChoices: FurtherChoice): MinMaxTableRows[] {
   const rows: MinMaxTableRows[] = [];
 
-  if (results.show && furtherChoices.chosenDisplaySize !== undefined) {
+  if (results.show && furtherChoices.chosenDisplaySize !== '') {
     if (inputs.selectedFont === 'No Preference') {
       // go to -1 since we are skipping "No Preference"
       for (let i = 1; i < fontOptions.length - 1; i++) {
@@ -100,21 +111,21 @@ const validationSchema = yup.object({
 export class FurtherChoice {
   chosenDisplaySizeUnits: string;
 
-  chosenDisplaySize: number | undefined;
+  chosenDisplaySize: number | '';
 
   constructor(chosenDisplaySizeUnits: string,
-      chosenDisplaySize: number | undefined) {
+      chosenDisplaySize: number | '') {
     this.chosenDisplaySizeUnits = chosenDisplaySizeUnits;
     this.chosenDisplaySize = chosenDisplaySize;
   }
 }
 
-const initialValues = new FurtherChoice(distanceUnits[0].label, undefined);
+const initialValues = new FurtherChoice(distanceUnits[0].label, '');
 
 function shouldShowWarning(furtherChoices: FurtherChoice, minWidth: number) {
   console.log(furtherChoices);
   console.log(minWidth);
-  if (furtherChoices.chosenDisplaySize === undefined) {
+  if (furtherChoices.chosenDisplaySize === '') {
     return false;
   }
   if (furtherChoices.chosenDisplaySizeUnits === 'in') {
@@ -147,6 +158,10 @@ export default function Results() {
     setShowWarning(shouldShowWarning(fc, outputValues.minWidth));
     router.push('#chosenWidthTable');
   };
+
+  const handleReset = (values: FurtherChoice) => {
+    
+  }
 
   return (
     <Box hidden={!outputValues.show} aria-live="polite"
@@ -195,13 +210,14 @@ export default function Results() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
+        onReset={handleReset}
       >
         {(props: FormikProps<FurtherChoice>) => (
-          <Form onSubmit={props.handleSubmit}>
+          <Form onSubmit={props.handleSubmit} onReset={props.handleReset}>
             <a id="chosenWidthTable" href="#chosenWidthTable" />
             <Typography style={{marginTop: '2rem', marginBottom: '1rem'}}>
-              Enter a new width here to see what print size range have
-              for effective reading (sp?):</Typography>
+              Enter a new width here to see what print size range you should have
+              for effective reading:</Typography>
             <TextField
               required
               id="chosenDisplaySize"
@@ -240,6 +256,7 @@ export default function Results() {
             </TextField>
             <Button variant="contained" color="primary"
               style={{marginLeft: '1rem'}} type="submit">Show table</Button>
+            <ResetInputValues />
           </Form>
         )}
       </Formik>

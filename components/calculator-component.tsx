@@ -39,7 +39,7 @@ export default class CalculatorComponent extends React.Component {
       },
       resetFurtherChoices: () => {
         this.state.furtherChoices =
-          new FurtherChoice(distanceUnits[0].label, undefined);
+          new FurtherChoice(distanceUnits[0].label, '');
       },
       showWarning: false,
       setShowWarning: (showWarning: boolean) => {
