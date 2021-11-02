@@ -24,20 +24,16 @@ const ThemeChanger = (props: ThemeChangerProps) => {
 
   if (useDarkTheme) {
     return (
-      <div>
-        <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
-          <FontAwesomeIcon icon={faSun} />
-        </IconButton>
-      </div>
+      <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
+        <FontAwesomeIcon icon={faSun} />
+      </IconButton>
     );
   }
 
   return (
-    <div>
-      <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
-        <FontAwesomeIcon icon={faMoon} />
-      </IconButton>
-    </div>
+    <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
+      <FontAwesomeIcon icon={faMoon} />
+    </IconButton>
   );
 };
 

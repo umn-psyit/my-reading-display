@@ -1,20 +1,51 @@
 import {
-  AppBar, Toolbar, makeStyles, Link,
+  AppBar, Box, Button, Hidden, IconButton, Toolbar, makeStyles, Link,
+  Drawer, createStyles, Theme, List, ListItem
 } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 import ThemeChanger from './theme-changer';
 import React from 'react';
+import zIndex from '@material-ui/core/styles/zIndex';
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: '1rem',
-  },
-  title: {
-    flexGrow: 1,
-  },
-});
+class PageInfo {
+  slug: string;
+  name: string;
+
+  constructor(slug: string, name: string) {
+      this.slug = slug;
+      this.name = name;
+  }
+}
+
+const PAGES = [
+  new PageInfo('background', 'Background'),
+  new PageInfo('calculator', 'Calculator'),
+];
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    bar: {
+      // zIndex: 100
+    },
+    root: {
+      display: 'flex'
+    },
+    menuButton: {
+      marginRight: '1rem',
+    },
+    title: {
+      flexGrow: 1,
+      // zIndex: 10
+    },
+    menuItems: {
+      // marginRight: '0',
+      // marginLeft: 'auto',
+      // flexGrow: 0
+    },
+    mobile_menu: {
+      color: 'inherit'
+    },
+}));
 
 interface NavbarProps {
   useDarkTheme: boolean,
@@ -25,15 +56,68 @@ export default function Navbar(props: NavbarProps) {
   const {setDarkTheme, useDarkTheme} = props;
   const classes = useStyles();
 
-  return (
-    <AppBar position="static" color="transparent">
-      <Toolbar>
-        <Link href="/" variant="h6" component="a" className={classes.title}>
-          My Reading Display
-        </Link>
+  const [open, setOpen] = React.useState(false);
 
-        <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
-      </Toolbar>
-    </AppBar>
+  const handleDrawerToggle = () => {
+    if (open === true) {
+        setOpen(false);
+    }
+    else {
+        setOpen(true);
+    }
+  };
+  
+  const appBarColor: string = useDarkTheme ? '#181818' : '#ffffff';
+
+  return (
+    <Box className={classes.root}>
+      <AppBar style={{zIndex: 1201}}>
+        <Toolbar>
+          <Link href="/" variant="h6" component="a" className={classes.title}>
+            My Reading Display
+          </Link>
+
+          <Box className={classes.menuItems}>
+              <Hidden mdUp>
+                  <IconButton onClick={handleDrawerToggle} edge="start" color="inherit" aria-label="menu" className={classes.mobile_menu}> 
+                      <MenuIcon />
+                  </IconButton>
+              </Hidden>
+              <Hidden smDown>
+                  {PAGES.map((page) => {
+                      return (
+                          <Link key={page.slug} href={page.slug}>
+                              <Button>{page.name}</Button>
+                          </Link>
+                      );
+                  })}
+                  <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
+              </Hidden>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+      <Hidden mdUp>
+        <Box>
+            <Drawer open={open} variant="persistent" anchor="top">
+                <Toolbar />
+                <List>
+                    {PAGES.map((page) => {
+                        return (
+                            <ListItem key={page.slug}>
+                                <Link href={page.slug}>
+                                    <Button onClick={handleDrawerToggle}>{page.name}</Button>
+                                </Link>
+                            </ListItem>
+                        );
+                    })}
+                    <ListItem>
+                      <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
+                    </ListItem>
+                </List>
+            </Drawer>
+        </Box>
+      </Hidden>
+    </Box>
   );
 }
