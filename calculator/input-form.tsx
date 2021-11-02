@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button,
   FormControl, FormControlLabel, FormLabel, InputAdornment,
@@ -14,7 +15,6 @@ import {
   viewingDistances, visionUnits,
 } from '../content/options-definitions';
 import {validationSchema} from './validation';
-import Image from "next/image";
 import fontSampleImg from '../public/font-sample.png';
 
 const initialValues = {
@@ -209,9 +209,9 @@ export default function InputForm() {
                 <Typography>Font Demos</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Image src={fontSampleImg}
-                placeholder="blur"
-                alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'"/>
+                <img src='font-sample.png'
+                style={{width: '100%'}}
+                alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'" />
               </AccordionDetails>
             </Accordion>
           </Box>
