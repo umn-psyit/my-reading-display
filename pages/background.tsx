@@ -3,6 +3,7 @@ import {
 } from '@material-ui/core';
 import Head from 'next/head';
 import React, { FC, PropsWithChildren } from 'react';
+// @ts-ignore
 import Content, {metadata} from '../content/background-content.mdx';
 import {MDXProvider} from '@mdx-js/react';
 

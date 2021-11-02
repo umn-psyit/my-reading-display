@@ -4,6 +4,7 @@ import {
 import Head from 'next/head';
 import React, { FC, PropsWithChildren, ReactChildren } from 'react';
 import Logo from '../components/logo';
+// @ts-ignore
 import Content, {metadata} from '../content/index-content.mdx';
 import {MDXProvider} from '@mdx-js/react';
 
