@@ -1,42 +1,42 @@
 export const visionUnits = [
   {
     value: 'Snellen (U.S.)',
-    label: '20/',
+    label: '20/', // don't change this line
   },
   {
     value: 'Snellen (Metric)',
-    label: '6/',
+    label: '6/', // don't change this line
   },
   {
     value: 'logMAR',
-    label: ' ',
+    label: ' ', // don't change this line
   },
 ];
 
 export const distanceUnits = [
   {
     value: 'Imperial (in)',
-    label: 'in',
+    label: 'in', // don't change this line
   },
   {
     value: 'Metric (cm)',
-    label: 'cm',
+    label: 'cm', // don't change this line
   },
 ];
 
 export const centralFieldLossOptions = [
   {
-    value: 'yes',
+    value: 'yes', // don't change this line
     CFL: 1,
     label: 'Yes',
   },
   {
-    value: 'no',
+    value: 'no', // don't change this line
     CFL: 0,
     label: 'No',
   },
   {
-    value: 'dontKnow',
+    value: 'dontKnow', // don't change this line
     CFL: 1,
     label: 'Don\'t Know',
   },

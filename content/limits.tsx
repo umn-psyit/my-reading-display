@@ -3,6 +3,13 @@ export const logMARLimitVA = {
   max: 3,
 };
 
+export const logMARLimitCPS = {
+  min: -0.3,
+  max: 4,
+};
+
+// Don't change below this line
+
 const snellenViewLimitVA = {
   min: Math.pow(10, -logMARLimitVA.min),
   max: Math.pow(10, -logMARLimitVA.max),
@@ -16,10 +23,6 @@ export const snellenMetricViewLimitVA = {
 export const snellenImperialViewLimitVA = {
   min: (20 / snellenViewLimitVA.min),
   max: (20 / snellenViewLimitVA.max),
-};
-export const logMARLimitCPS = {
-  min: -0.3,
-  max: 4,
 };
 
 const snellenViewLimitCPS = {
