@@ -86,8 +86,7 @@ export default function Home() {
               Reconciling print-size and display-size
               constraints on reading. Proceedings of the National
               Academy of Sciences, 117(48), 30276-
-              30284.
-              <MuiLink href="https://doi.org/10.1073/pnas.2007514117">https://doi.org/10.1073/pnas.2007514117</MuiLink>
+              30284. <MuiLink href="https://doi.org/10.1073/pnas.2007514117">https://doi.org/10.1073/pnas.2007514117</MuiLink>
             </Typography>
           </CardContent>
         </Card>
@@ -101,13 +100,15 @@ export default function Home() {
         </Card>
 
         <Typography variant="body1" className={classes.bodyParagraph}>
-          To understand the vision status and reading preferences of our
-          users, as well as to improve our calculator, we will store the
-          reading-related information entered by our users, including
-          visual acuity, critical print size, central vision status,
-          preferred viewing distance and preferred font. The calculator
-          DOES NOT ask for or store any identifiable personal information
-          such as name, age, gender, or IP address.</Typography>
+        To understand the vision status and reading preferences of our
+        users, as well as to improve our calculator, we will store the
+        reading-related information entered by our users, including
+        visual acuity, critical print size, central vision status,
+        preferred viewing distance and preferred font. The data is
+        securely stored on UMN database and can only be accessed by
+        researchers in the MN low vision research lab. We will NOT
+        store any identifiable personal information such as name,
+        age, gender, or IP address.</Typography>
       </main>
 
       <footer>
