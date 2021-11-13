@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import {
   Accordion, AccordionDetails, AccordionSummary, Box, Button,
-  FormControl, FormControlLabel, FormLabel, InputAdornment,
+  FormControl, FormControlLabel, FormLabel, Hidden, InputAdornment,
   MenuItem, Radio, RadioGroup, TextField, Typography
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -202,19 +202,37 @@ export default function InputForm() {
                 <MenuItem key={index} value={font}>{font}</MenuItem>
               ))}
             </TextField>
-            <Accordion style={{width: '70%'}}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-              >
-                <Typography>Font Demos</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <img src='font-sample.png'
-                style={{width: '100%'}}
-                alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'" />
-              </AccordionDetails>
-            </Accordion>
+            <Hidden smDown>
+              <Accordion style={{width: '70%'}}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Font Demos</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <img src='font-sample.png'
+                  style={{width: '100%'}}
+                  alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'" />
+                </AccordionDetails>
+              </Accordion>
+            </Hidden>
+            
           </Box>
+
+          <Hidden mdUp>
+              <Accordion style={{width: '100%', maxWidth: '40em'}}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                >
+                  <Typography>Font Demos</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <img src='font-sample.png'
+                  style={{width: '100%'}}
+                  alt="Samples of the fonts available to choose from with the sentence: 'The quick brown fox jumps over a lazy dog'" />
+                </AccordionDetails>
+              </Accordion>
+            </Hidden>
 
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
             <TextField
