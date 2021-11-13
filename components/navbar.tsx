@@ -1,5 +1,5 @@
 import {
-  AppBar, Box, Button, Hidden, IconButton, Toolbar, makeStyles, Link,
+  AppBar, Box, Button, Container, Hidden, IconButton, Toolbar, makeStyles, Link,
   Drawer, createStyles, Theme, List, ListItem
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -33,14 +33,17 @@ const useStyles = makeStyles(() =>
     menuButton: {
       margin: '0 0.5rem',
     },
-    title: {
+    titleBox: {
       flexGrow: 1,
+    },
+    title: {
+      // flexGrow: 1,
       // zIndex: 10
     },
     menuItems: {
-      // marginRight: '0',
-      // marginLeft: 'auto',
-      // flexGrow: 0
+      marginRight: '0',
+      marginLeft: 'auto',
+      flexGrow: 0
     },
     mobile_menu: {
       color: 'inherit'
@@ -73,29 +76,31 @@ export default function Navbar(props: NavbarProps) {
   return (
     <Box className={classes.root} style={{zIndex: 1201}}>
       <AppBar color="inherit" style={{zIndex: 1202}}>
-        <Toolbar>
-          <Link href="/" variant="h6" component="a" className={classes.title}>
-            My Reading Display
-          </Link>
+        <Container maxWidth="md">
+          <Toolbar style={{padding: '0'}}>
+              <Link href="/" variant="h6" component="a" className={classes.title}>
+                My Reading Display
+              </Link>
 
-          <Box className={classes.menuItems}>
-              <Hidden mdUp>
-                  <IconButton onClick={handleDrawerToggle} edge="start" color="inherit" aria-label="menu" className={classes.mobile_menu}> 
-                      {open ? <CloseIcon /> : <MenuIcon />}
-                  </IconButton>
-              </Hidden>
-              <Hidden smDown>
-                  {PAGES.map((page) => {
-                      return (
-                          <Link key={page.slug} href={page.slug}>
-                              <Button disableElevation className={classes.menuButton} color="primary" variant="contained">{page.name}</Button>
-                          </Link>
-                      );
-                  })}
-                  <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
-              </Hidden>
-          </Box>
-        </Toolbar>
+            <Box className={classes.menuItems}>
+                <Hidden mdUp>
+                    <IconButton onClick={handleDrawerToggle} edge="start" color="inherit" aria-label="menu" className={classes.mobile_menu}> 
+                        {open ? <CloseIcon /> : <MenuIcon />}
+                    </IconButton>
+                </Hidden>
+                <Hidden smDown>
+                    {PAGES.map((page) => {
+                        return (
+                            <Link key={page.slug} href={page.slug}>
+                                <Button disableElevation className={classes.menuButton} color="primary" variant="contained">{page.name}</Button>
+                            </Link>
+                        );
+                    })}
+                    <ThemeChanger setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
+                </Hidden>
+            </Box>
+          </Toolbar>
+        </Container>
       </AppBar>
       <Toolbar />
       <Hidden mdUp>
