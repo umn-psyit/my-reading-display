@@ -1,8 +1,39 @@
 import {useEffect, useState} from 'react';
-import {IconButton} from '@material-ui/core';
+import {IconButton, Button, makeStyles, createStyles} from '@material-ui/core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, {FC} from 'react';
+
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    outlined: {
+      padding: '0.5em',
+      minWidth: '0',
+      marginLeft: '0.5em'
+    },
+    iconButton: {
+      padding: '0',
+      backgroundColor: 'transparent',
+      "&:hover": {
+        backgroundColor: 'transparent'
+    }
+    }
+  }));
+
+const lightButtonClasses = makeStyles(() =>
+  createStyles({
+    root: {
+      color: '#000'
+    }
+  }))
+
+const darkButtonClasses = makeStyles(() =>
+  createStyles({
+    root: {
+      color: '#FFF'
+    }
+  }))
 
 interface ThemeChangerProps {
     useDarkTheme: boolean,
@@ -12,6 +43,7 @@ interface ThemeChangerProps {
 const ThemeChanger = (props: ThemeChangerProps) => {
   const {setDarkTheme, useDarkTheme} = props;
   const [mounted, setMounted] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => setMounted(true), []);
 
@@ -22,18 +54,26 @@ const ThemeChanger = (props: ThemeChangerProps) => {
     setDarkTheme(!useDarkTheme); // switches matieral-ui theme
   };
 
+  const ChangeButton: FC = ({children}) => {
+    return <Button variant="outlined" className={classes.outlined} onClick={onChangeTheme} disableElevation>
+      <IconButton disableRipple disableFocusRipple className={classes.iconButton} size="small">
+      {children}
+      </IconButton>
+    </Button>
+  }
+
   if (useDarkTheme) {
     return (
-      <IconButton onClick={onChangeTheme} aria-label="switch to light mode">
+      <ChangeButton aria-label="switch to light mode">
         <FontAwesomeIcon icon={faSun} />
-      </IconButton>
+      </ChangeButton>
     );
   }
 
   return (
-    <IconButton onClick={onChangeTheme} aria-label="switch to dark mode">
+    <ChangeButton aria-label="switch to dark mode">
       <FontAwesomeIcon icon={faMoon} />
-    </IconButton>
+    </ChangeButton>
   );
 };
 

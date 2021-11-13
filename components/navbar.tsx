@@ -31,7 +31,7 @@ const useStyles = makeStyles(() =>
       display: 'flex'
     },
     menuButton: {
-      marginRight: '1rem',
+      margin: '0 0.5rem',
     },
     title: {
       flexGrow: 1,
@@ -88,7 +88,7 @@ export default function Navbar(props: NavbarProps) {
                   {PAGES.map((page) => {
                       return (
                           <Link key={page.slug} href={page.slug}>
-                              <Button>{page.name}</Button>
+                              <Button disableElevation className={classes.menuButton} color="primary" variant="contained">{page.name}</Button>
                           </Link>
                       );
                   })}
