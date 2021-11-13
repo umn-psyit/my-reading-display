@@ -5,7 +5,7 @@ import CalculatorComponent from '../components/calculator-component';
 
 export default function Calculator() {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" style={{padding: 0}}>
       <Head>
         <title>Calculator | My Reading Display</title>
       </Head>

@@ -76,7 +76,7 @@ export default function Navbar(props: NavbarProps) {
   return (
     <Box className={classes.root} style={{zIndex: 1201}}>
       <AppBar color="inherit" style={{zIndex: 1202}}>
-        <Container maxWidth="md">
+        <Container maxWidth="lg" style={{marginLeft: 'auto'}}>
           <Toolbar style={{padding: '0'}}>
               <Link href="/" variant="h6" component="a" className={classes.title}>
                 My Reading Display

@@ -53,7 +53,7 @@ export default class CalculatorComponent extends React.Component {
   render() {
     return (
       <CalculatorContext.Provider value={this.state}>
-        <Box style={{marginBottom: '2em'}}>
+        <Box>
           <InputForm />
           <Results />
         </Box>

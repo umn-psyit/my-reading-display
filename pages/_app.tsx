@@ -27,7 +27,7 @@ function MyReadingDisplayApp({Component, pageProps}: AppProps) {
     <DarkLightThemeProvider enableSystem>
       <ThemeProvider theme={exTheme}>
         <CssBaseline />
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={{marginBottom: '1em'}}>
           <Navbar setDarkTheme={setDarkTheme} useDarkTheme={useDarkTheme} />
           <Component {...pageProps} />
         </Container>
