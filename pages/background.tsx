@@ -38,7 +38,7 @@ export default function Background() {
     return <Card className={classes.bodyParagraph}>
         <CardContent>
             <Typography>
-                {children} {link ? <MuiLink href={link}>{link}</MuiLink> : ''}
+                {children} {link ? <MuiLink color='inherit' underline='always' href={link}>{link}</MuiLink> : ''}
             </Typography>
         </CardContent>
     </Card>

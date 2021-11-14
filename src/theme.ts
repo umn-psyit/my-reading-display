@@ -22,10 +22,10 @@ export const darkTheme = createTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#ffcc33',
+      main: '#7a0019',
     },
     secondary: {
-      main: '#7a0019',
+      main: '#ffcc33',
     },
     background: {
       paper: '#181818',
@@ -39,4 +39,15 @@ export const darkTheme = createTheme({
       fontSize: 50,
     },
   },
+  overrides: {
+    MuiLink: {
+      root: {
+        color: 'inherit',
+        textDecoration: 'underline'
+      },
+      underlineHover: {
+        textDecoration: 'underline'
+      }
+    }
+  }
 });

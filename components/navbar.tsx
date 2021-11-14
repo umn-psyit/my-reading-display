@@ -39,6 +39,7 @@ const useStyles = makeStyles(() =>
     title: {
       // flexGrow: 1,
       // zIndex: 10
+      color: 'inherit'
     },
     menuItems: {
       marginRight: '0',
@@ -78,7 +79,7 @@ export default function Navbar(props: NavbarProps) {
       <AppBar color="inherit" style={{zIndex: 1202}}>
         <Container maxWidth="lg" style={{marginLeft: 'auto'}}>
           <Toolbar style={{padding: '0'}}>
-              <Link href="/" variant="h6" component="a" className={classes.title}>
+              <Link href="/" variant="h6" component="a" className={classes.title} underline="always">
                 My Reading Display
               </Link>
 
