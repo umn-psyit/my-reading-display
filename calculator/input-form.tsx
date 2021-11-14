@@ -72,8 +72,7 @@ export default function InputForm() {
         >
           <Typography variant="body1" style={{marginBottom: '1em',
             marginTop: '1em'}}>
-            Please enter the reader&apos;s binocular visual acuity <strong>(required)</strong>
-            .
+            Please enter the reader&apos;s binocular visual acuity <strong>(required)</strong>.
           </Typography>
           <Box style={{marginTop: '1em'}}>
             <TextField

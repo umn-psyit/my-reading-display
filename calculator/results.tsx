@@ -1,7 +1,7 @@
 import {
   Box, Button, InputAdornment, MenuItem, Paper, Table,
   TableBody, TableCell, TableContainer, TableHead,
-  TableRow, TextField, Typography,
+  TableRow, TextField, Typography, Tooltip
 } from '@material-ui/core';
 import {Form, Formik, FormikProps, useFormikContext} from 'formik';
 import React, {useContext, useEffect} from 'react';
@@ -16,6 +16,9 @@ import {roundPoints} from '../src/util';
 import TypicalDisplaySizeAccordion from '../components/display-sizes-accordion';
 import {CalculatorContext} from './calculator-context';
 import Link from 'next/link';
+import ReportDownloadButton from '../components/report-download-button';
+import ReportPDF from './report';
+import { usePDF } from '@react-pdf/renderer';
 
 const ResetInputValues = () => {
   const { resetForm } = useFormikContext();
@@ -106,7 +109,8 @@ const validationSchema = yup.object({
   chosenDisplaySize: yup
       .number()
       .moreThan(0)
-      .label('Chosen Display Size'),
+      .label('Chosen Display Size')
+      .typeError('Please enter a number greater than 0'),
 });
 
 export class FurtherChoice {
@@ -151,6 +155,8 @@ export default function Results() {
   (${(outputValues.minWidth / 2.54).toFixed(2)}in)`;
   const router = useRouter();
 
+  const [instance, updateInstance] = usePDF({ document: <ReportPDF /> });
+
   const handleSubmit = (values: FurtherChoice) => {
     setShowMinMaxTable(true);
     const fc = new FurtherChoice(values.chosenDisplaySizeUnits,
@@ -168,7 +174,7 @@ export default function Results() {
     <Box hidden={!outputValues.show} aria-live="polite"
       style={{marginBottom: '3rem'}}>
       <a id="results" href="#results" />
-      <Typography variant="h3" style={{marginTop: '2rem'}}>Results</Typography>
+      <Typography variant="h3" style={{marginTop: '2rem', marginBottom: '1rem'}}>Results</Typography>
       <Typography style={{marginTop: '1rem'}}>
         To achieve a maximum reading speed, the reader needs a
         display with a width larger than {minWidthString}.
@@ -235,7 +241,7 @@ export default function Results() {
                   aria-live="polite">{props.values.chosenDisplaySizeUnits}
                 </InputAdornment>,
               }}
-              style={{width: '10rem', margin: '0 1rem'}}
+              style={{width: '10rem', marginLeft: '1rem'}}
             />
             <TextField
               select
@@ -245,7 +251,7 @@ export default function Results() {
               label="Display Size Units"
               value={props.values.chosenDisplaySizeUnits}
               onChange={props.handleChange}
-              style={{width: '13rem'}}
+              style={{width: '13rem', marginLeft: '1rem'}}
               error={props.touched.chosenDisplaySizeUnits &&
                 Boolean(props.errors.chosenDisplaySizeUnits)}
               helperText={props.touched.chosenDisplaySizeUnits &&
@@ -256,8 +262,12 @@ export default function Results() {
               ))}
             </TextField>
             <Button variant="contained" color="primary"
-              style={{marginLeft: '1rem'}} type="submit">Show table</Button>
+              style={{marginLeft: '1rem', marginTop: '1rem'}} type="submit">
+                {!showMinMaxTable ? 'Show table' : 'Update table'}</Button>
             <ResetInputValues />
+            <Tooltip title="Delete">
+              <ReportDownloadButton instance={instance} disabled={!showMinMaxTable} />
+            </Tooltip>
           </Form>
         )}
       </Formik>
