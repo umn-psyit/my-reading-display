@@ -5,7 +5,6 @@ import InputForm from '../calculator/input-form';
 import Results, {FurtherChoice} from '../calculator/results';
 import {InputValues, OutputValues} from '../calculator/calculate';
 import {distanceUnits} from '../content/options-definitions';
-import {Box} from '@material-ui/core';
 
 export default class CalculatorComponent extends React.Component {
   state: CalculatorContextType;
@@ -53,10 +52,8 @@ export default class CalculatorComponent extends React.Component {
   render() {
     return (
       <CalculatorContext.Provider value={this.state}>
-        <Box>
-          <InputForm />
-          <Results />
-        </Box>
+        <InputForm />
+        <Results />
       </CalculatorContext.Provider>
     );
   }
