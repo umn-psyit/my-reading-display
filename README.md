@@ -15,9 +15,9 @@ Either way, the new changes will begin to be built automatically and should fini
 All content which is supposed to be easily editable is in the `content` directory.
 
 - *Home* and *Background* pages:
-  - Edit the `content/index-content.mdx` or `content/background-content.mdx`
+  - Edit the `content/index-content.mdx` or `content/background-content.mdx` files.
 - Calculator page question/prompt text
-  - *Coming soon*
+  - Edit the `content/calculator-text.ts` file.
 - Typical display table
   - Edit `content/typical-display-measures.ts`. This file contains 3 parts. The top true/false variable shows/hides the table. The second part is a list of the column names. You can change the display names of the columns there if you like. The last part is a list of all the options. Change the row contents here.
 - Central vision loss options, viewing distances, fonts and their values, unit labels
