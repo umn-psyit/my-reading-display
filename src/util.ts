@@ -12,3 +12,5 @@ export function roundPoints(input: number): string {
   }
   return (Math.round(input * 2) / 2).toFixed(1);
 }
+
+export type VisionUnitType = '20/' | '6/' | ' ';

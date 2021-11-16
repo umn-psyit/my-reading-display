@@ -24,8 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.mdx",
-    "**/*.md"
-, "calculator/report.js"  ],
+    "**/*.md"  ],
   "exclude": [
     "node_modules"
   ]

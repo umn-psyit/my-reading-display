@@ -1,5 +1,6 @@
 import {centralFieldLossOptions, fontOptions} from '../content/options-definitions';
 import {sendResults} from './send-results';
+import { VisionUnitType } from "../src/util";
 
 class MinMax {
   min: number;
@@ -85,11 +86,11 @@ export interface InputValuesInterface {
 }
 
 export class InputValues implements InputValuesInterface {
-  visualAcuityUnits: string;
+  visualAcuityUnits: VisionUnitType;
 
   visualAcuity: string;
 
-  criticalPrintSizeUnits: string;
+  criticalPrintSizeUnits: VisionUnitType;
 
   criticalPrintSize: string;
 
@@ -103,8 +104,8 @@ export class InputValues implements InputValuesInterface {
 
   customViewDistanceUnits: string;
 
-  constructor(visualAcuityUnits: string, visualAcuity: string,
-      criticalPrintSizeUnits: string, criticalPrintSize: string,
+  constructor(visualAcuityUnits: VisionUnitType, visualAcuity: string,
+      criticalPrintSizeUnits: VisionUnitType, criticalPrintSize: string,
       hasCentralFieldLoss: string, selectedFont: string,
       selectedViewingDistance: string, customViewDistance: number,
       customViewDistanceUnits: string) {

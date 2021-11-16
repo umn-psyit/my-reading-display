@@ -15,7 +15,6 @@ import {distanceUnits, fontOptions} from '../content/options-definitions';
 import {roundPoints} from '../src/util';
 import TypicalDisplaySizeAccordion from '../components/display-sizes-accordion';
 import {CalculatorContext} from './calculator-context';
-import Link from 'next/link';
 import ReportDownloadButton from '../components/report-download-button';
 import ReportPDF from './report';
 import { usePDF } from '@react-pdf/renderer';
@@ -36,7 +35,7 @@ interface PointSizeTableRows {
   pointSize: number;
 }
 
-function getPointSizeTableData(inputs: InputValues, results:
+export function getPointSizeTableData(inputs: InputValues, results:
   OutputValues): PointSizeTableRows[] {
   const rows: PointSizeTableRows[] = [];
 
@@ -68,7 +67,7 @@ interface MinMaxTableRows {
   max: number;
 }
 
-function getMinMaxTableData(inputs: InputValues, results: OutputValues,
+export function getMinMaxTableData(inputs: InputValues, results: OutputValues,
     furtherChoices: FurtherChoice): MinMaxTableRows[] {
   const rows: MinMaxTableRows[] = [];
 
@@ -155,7 +154,14 @@ export default function Results() {
   (${(outputValues.minWidth / 2.54).toFixed(2)}in)`;
   const router = useRouter();
 
-  const [instance, updateInstance] = usePDF({ document: <ReportPDF /> });
+  const [instance, updateReport] = usePDF({ document:
+    <ReportPDF input={inputValues} output={outputValues} furtherChoices={furtherChoices}
+    minWidthString={minWidthString} />
+  });
+
+  useEffect(() => {
+    updateReport();
+  }, [furtherChoices, updateReport]);
 
   const handleSubmit = (values: FurtherChoice) => {
     setShowMinMaxTable(true);
@@ -169,6 +175,10 @@ export default function Results() {
   const handleReset = (values: FurtherChoice) => {
 
   }
+
+  let highlightColor: 'primary' | 'secondary' = 'primary';
+  const theme = localStorage.getItem('mrd-theme');
+  if (theme !== null) highlightColor = localStorage.getItem('mrd-theme') === 'true' ? 'secondary' : 'primary';
 
   return (
     <Box hidden={!outputValues.show} aria-live="polite"
@@ -224,7 +234,8 @@ export default function Results() {
             <a id="chosenWidthTable" href="#chosenWidthTable" />
             <Typography style={{marginTop: '2rem', marginBottom: '1rem'}}>
               Enter a new width here to see what print size range you should have
-              for effective reading:</Typography>
+              for effective reading. Once you enter the width and click &rsquo;Show Table&lsquo;
+              you may download a PDF report of your inputs and the results.</Typography>
             <TextField
               required
               id="chosenDisplaySize"
@@ -242,6 +253,7 @@ export default function Results() {
                 </InputAdornment>,
               }}
               style={{width: '10rem', marginLeft: '1rem'}}
+              color={highlightColor}
             />
             <TextField
               select
@@ -256,6 +268,7 @@ export default function Results() {
                 Boolean(props.errors.chosenDisplaySizeUnits)}
               helperText={props.touched.chosenDisplaySizeUnits &&
                 props.errors.chosenDisplaySizeUnits}
+              color={highlightColor}
             >
               {distanceUnits.map(({label}, index) => (
                 <MenuItem key={index} value={label}>{label}</MenuItem>
@@ -265,9 +278,7 @@ export default function Results() {
               style={{marginLeft: '1rem', marginTop: '1rem'}} type="submit">
                 {!showMinMaxTable ? 'Show table' : 'Update table'}</Button>
             <ResetInputValues />
-            <Tooltip title="Delete">
-              <ReportDownloadButton instance={instance} disabled={!showMinMaxTable} />
-            </Tooltip>
+            <ReportDownloadButton instance={instance} disabled={!showMinMaxTable} />
           </Form>
         )}
       </Formik>

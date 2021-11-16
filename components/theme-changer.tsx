@@ -56,9 +56,7 @@ const ThemeChanger = (props: ThemeChangerProps) => {
 
   const ChangeButton: FC = ({children}) => {
     return <Button variant="outlined" className={classes.outlined} onClick={onChangeTheme} disableElevation>
-      {/* <IconButton disableRipple disableFocusRipple className={classes.iconButton} size="small"> */}
       {children}
-      {/* </IconButton> */}
     </Button>
   }
 

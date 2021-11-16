@@ -1,4 +1,6 @@
-export const visionUnits = [
+import { VisionUnitType } from "../src/util";
+
+export const visionUnits: Array<{value: string, label: VisionUnitType}> = [
   {
     value: 'Snellen (U.S.)',
     label: '20/', // don't change this line

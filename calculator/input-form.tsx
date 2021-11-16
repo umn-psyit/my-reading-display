@@ -54,6 +54,10 @@ export default function InputForm() {
     router.push('/calculator');
   };
 
+  let highlightColor: 'primary' | 'secondary' = 'primary';
+  const theme = localStorage.getItem('mrd-theme');
+  if (theme !== null) highlightColor = localStorage.getItem('mrd-theme') === 'true' ? 'secondary' : 'primary';
+
   return (
     <Formik
       initialValues={initialValues}
@@ -92,6 +96,7 @@ export default function InputForm() {
                   {props.values.visualAcuityUnits}</InputAdornment>,
               }}
               style={{width: '13rem', margin: '0 1rem 0 0'}}
+              color={highlightColor}
             />
 
             <TextField
@@ -107,6 +112,7 @@ export default function InputForm() {
               helperText={props.touched.visualAcuityUnits &&
                 props.errors.visualAcuityUnits}
               style={{width: '12rem'}}
+              color={highlightColor}
             >
               {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
@@ -139,6 +145,7 @@ export default function InputForm() {
                 </InputAdornment>,
               }}
               style={{width: '15rem', margin: '0 1rem 0 0'}}
+              color={highlightColor}
             />
 
             <TextField
@@ -149,6 +156,7 @@ export default function InputForm() {
               value={props.values.criticalPrintSizeUnits}
               onChange={props.handleChange}
               style={{width: '13rem'}}
+              color={highlightColor}
             >
               {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
@@ -164,7 +172,7 @@ export default function InputForm() {
             <FormControl
               required
             >
-              <FormLabel>Has Central Field Loss</FormLabel>
+              <FormLabel color={highlightColor}>Has Central Field Loss</FormLabel>
               <RadioGroup
                 row
                 aria-label="has central field loss"
@@ -172,10 +180,11 @@ export default function InputForm() {
                 name="hasCentralFieldLoss"
                 value={props.values.hasCentralFieldLoss}
                 onChange={props.handleChange}
+                color={highlightColor}
               >
                 {centralFieldLossOptions.map(({label, CFL}, index) => (
                   <FormControlLabel control={<Radio />} key={index}
-                    value={label} label={label} />
+                  color={highlightColor} value={label} label={label} />
                 ))}
               </RadioGroup>
             </FormControl>
@@ -196,6 +205,7 @@ export default function InputForm() {
               value={props.values.selectedFont}
               onChange={props.handleChange}
               onFocus={resetOutputValues}
+              color={highlightColor}
             >
               {fontOptions.map(({font}, index) => (
                 <MenuItem key={index} value={font}>{font}</MenuItem>
@@ -244,6 +254,7 @@ export default function InputForm() {
               value={props.values.selectedViewingDistance}
               onChange={props.handleChange}
               onFocus={resetOutputValues}
+              color={highlightColor}
             >
               {viewingDistances.map(({label}, index) => (
                 <MenuItem key={index} value={label}>{label}</MenuItem>
@@ -269,6 +280,7 @@ export default function InputForm() {
                   </InputAdornment>,
                 }}
                 style={{width: '10rem', margin: '0 1rem'}}
+                color={highlightColor}
               />
               <TextField
                 select
@@ -283,6 +295,7 @@ export default function InputForm() {
                   Boolean(props.errors.customViewDistanceUnits)}
                 helperText={props.touched.customViewDistanceUnits &&
                   props.errors.customViewDistanceUnits}
+                color={highlightColor}
               >
                 {distanceUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
