@@ -18,6 +18,7 @@ import {CalculatorContext} from './calculator-context';
 import ReportDownloadButton from '../components/report-download-button';
 import ReportPDF from './report';
 import { usePDF } from '@react-pdf/renderer';
+import {text} from '../content/calculator-text';
 
 const ResetInputValues = () => {
   const { resetForm } = useFormikContext();
@@ -186,16 +187,13 @@ export default function Results() {
       <a id="results" href="#results" />
       <Typography variant="h3" style={{marginTop: '2rem', marginBottom: '1rem'}}>Results</Typography>
       <Typography style={{marginTop: '1rem'}}>
-        To achieve a maximum reading speed, the reader needs a
-        display with a width larger than {minWidthString}.
+        {eval('`' + text.maxReadingSpeed + '`')}
       </Typography>
 
       <TypicalDisplaySizeAccordion />
 
       <Typography style={{marginTop: '2rem'}}>
-        The table below shows the point size you will need when
-        reading on a display with {minWidthString}{' '}
-        width using different fonts.
+        {eval('`' + text.firstTableDescription + '`')}
       </Typography>
 
       <TableContainer component={Paper} style={{maxWidth: '25rem',
@@ -204,7 +202,7 @@ export default function Results() {
           <TableHead>
             <TableRow>
               <TableCell>Font</TableCell>
-              <TableCell align="center">Point Size</TableCell>
+              <TableCell align="center">{text.firstTableColumnHeader}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -284,9 +282,7 @@ export default function Results() {
       </Formik>
       <Box hidden={!showWarning}>
         <Typography style={{marginTop: '2rem'}}>
-          This display size is smaller than the minimum for the
-          conditions specified. Please try a display size larger
-          the the minimum of {minWidthString}
+          {eval('`' + text.chosenSizeWarning + '`')}
         </Typography>
       </Box>
 
@@ -297,8 +293,8 @@ export default function Results() {
             <TableHead>
               <TableRow>
                 <TableCell>Font</TableCell>
-                <TableCell align="center">Minimum Point Size</TableCell>
-                <TableCell align="center">Maximum Point Size</TableCell>
+                <TableCell align="center">{text.secondTableColumn1Header}</TableCell>
+                <TableCell align="center">{text.secondTableColumn2Header}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

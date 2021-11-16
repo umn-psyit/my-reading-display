@@ -15,7 +15,7 @@ import {
   viewingDistances, visionUnits,
 } from '../content/options-definitions';
 import {validationSchema} from './validation';
-import fontSampleImg from '../public/font-sample.png';
+import {text} from '../content/calculator-text';
 
 const initialValues = {
   visualAcuityUnits: visionUnits[0].label,
@@ -76,7 +76,7 @@ export default function InputForm() {
         >
           <Typography variant="body1" style={{marginBottom: '1em',
             marginTop: '1em'}}>
-            Please enter the reader&apos;s binocular visual acuity <strong>(required)</strong>.
+            {text.VAText}
           </Typography>
           <Box style={{marginTop: '1em'}}>
             <TextField
@@ -122,12 +122,11 @@ export default function InputForm() {
 
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
             <Typography variant="body1" style={{marginTop: '2em'}}>
-              Please enter the reader&apos;s critical print size measured
-              by reading charts <strong>(optional)</strong>.
+              {text.CPSText}
             </Typography>
 
             <Typography variant="body1" style={{marginBottom: '1em'}}>
-              Critical print size refers to the smallest print size that allows one to read at their maximum reading speed.</Typography>
+              {text.CPSDetail}</Typography>
             <TextField
               id="criticalPrintSize"
               name="criticalPrintSize"
@@ -167,7 +166,7 @@ export default function InputForm() {
           <Box>
             <Typography variant="body1"
               style={{marginBottom: '1em', marginTop: '2em'}}>
-              Does the reader have central field loss?
+              {text.CFLText}
             </Typography>
             <FormControl
               required
