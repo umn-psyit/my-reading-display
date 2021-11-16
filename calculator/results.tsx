@@ -293,8 +293,8 @@ export default function Results() {
             <TableHead>
               <TableRow>
                 <TableCell>Font</TableCell>
-                <TableCell align="center">{text.secondTableColumn1Header}</TableCell>
-                <TableCell align="center">{text.secondTableColumn2Header}</TableCell>
+                <TableCell align="center"><div dangerouslySetInnerHTML={{__html: text.secondTableColumn1Header}} /></TableCell>
+                <TableCell align="center"><div dangerouslySetInnerHTML={{__html: text.secondTableColumn2Header}} /></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

@@ -76,7 +76,7 @@ export default function InputForm() {
         >
           <Typography variant="body1" style={{marginBottom: '1em',
             marginTop: '1em'}}>
-            {text.VAText}
+            <div dangerouslySetInnerHTML={{__html: text.VAText}} />
           </Typography>
           <Box style={{marginTop: '1em'}}>
             <TextField
@@ -122,11 +122,12 @@ export default function InputForm() {
 
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
             <Typography variant="body1" style={{marginTop: '2em'}}>
-              {text.CPSText}
+              <div dangerouslySetInnerHTML={{__html: text.CPSText}} />
             </Typography>
 
             <Typography variant="body1" style={{marginBottom: '1em'}}>
-              {text.CPSDetail}</Typography>
+              <div dangerouslySetInnerHTML={{__html: text.CPSDetail}} />
+            </Typography>
             <TextField
               id="criticalPrintSize"
               name="criticalPrintSize"
@@ -166,7 +167,7 @@ export default function InputForm() {
           <Box>
             <Typography variant="body1"
               style={{marginBottom: '1em', marginTop: '2em'}}>
-              {text.CFLText}
+                <div dangerouslySetInnerHTML={{__html: text.CFLText}} />
             </Typography>
             <FormControl
               required
