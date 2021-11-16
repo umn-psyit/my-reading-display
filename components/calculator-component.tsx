@@ -21,13 +21,13 @@ export default class CalculatorComponent extends React.Component {
         this.state.outputValues =
           new OutputValues(false, -1, -1, -1, -1, -1, -1);
       },
-      inputValues: new InputValues('Snellen (U.S.)', '', 'Snellen (U.S.)', '', '', '', '', -1, ''),
+      inputValues: new InputValues('20/', '', '20/', '', '', '', '', -1, ''),
       setInputValues: (values: InputValues) => {
         this.state.inputValues = values;
       },
       resetInputValues: () => {
         this.state.inputValues =
-          new InputValues('Snellen (U.S.)', '', 'Snellen (U.S.)', '', '', '', '', -1, '');
+          new InputValues('20/', '', '20/', '', '', '', '', -1, '');
       },
       showMinMaxTable: false,
       setShowMinMaxTable: (showMinMaxTable: boolean) => {
