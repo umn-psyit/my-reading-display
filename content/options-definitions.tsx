@@ -147,8 +147,8 @@ export const fontOptions = [
   },
   {
     font: 'Maxular',
-    wx: 1.54,
-    wf: 0.67,
+    wx: 1.42,
+    wf: 0.62,
     xf: 0.44,
   },
   {
