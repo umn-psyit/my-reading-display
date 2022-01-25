@@ -185,7 +185,7 @@ export function calculateMinWidth(vd: number, wx: number | undefined, CPS: numbe
     throw new Error('Could not calculate minimum display width ' +
       'because wx is undefined');
   }
-  return 0.037 * vd * wx * Math.pow(10, CPS-0.33*wx);
+  return (0.037 * vd * wx * Math.pow(10, CPS)) / Math.pow(2.14, wx);
 }
 
 export function calculateMinPointSize(vd: number, CPS: number,
@@ -249,9 +249,9 @@ export const calculate = (values: InputValuesInterface) => {
 
   let minWidth:number = -1;
   if (wx instanceof MinMax) {
-    minWidth = 0.037 * vd * wx.max * Math.pow(10, CPS-0.33*wx.max);
+    minWidth = (0.037 * vd * wx.max * Math.pow(10, CPS)) / Math.pow(2.14, wx.max);
   } else {
-    minWidth = 0.037 * vd * wx * Math.pow(10, CPS-0.33*wx);
+    minWidth = (0.037 * vd * wx * Math.pow(10, CPS)) / Math.pow(2.14, wx);
     if (isNaN(minWidth)) {
       throw new Error(`minWidth is NaN, vd: ${vd}, wx: ${wx}, CPS: ${CPS}`);
     }
