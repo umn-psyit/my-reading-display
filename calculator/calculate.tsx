@@ -58,6 +58,28 @@ function getWFFromFont(selectedFont: string): number | MinMax {
   throw new Error(`Could not find font: ${selectedFont} result: ${result}`);
 }
 
+function getWXFromFont(selectedFont: string): number | MinMax {
+  if (selectedFont.normalize() === 'No Preference') {
+    const min = Math.min(...fontOptions.map((o) =>
+      ((o.wx === undefined) ? Number.MAX_VALUE : o.wx)));
+    const max = Math.max(...fontOptions.map((o) =>
+      ((o.wx === undefined) ? Number.MIN_VALUE : o.wx)));
+    return new MinMax(min, max);
+  }
+
+  let result = -1;
+  fontOptions.forEach(({font, wx}) => {
+    if (font.normalize() === selectedFont.normalize() && wx !== undefined) {
+      result = wx;
+    }
+  });
+  if (result !== -1) {
+    return result;
+  }
+
+  throw new Error(`Could not find font: ${selectedFont} result: ${result}`);
+}
+
 function getCFLFromString(centralFieldLoss: string): number {
   let result = -1;
   centralFieldLossOptions.forEach(({CFL, label}) => {
