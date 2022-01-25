@@ -188,15 +188,11 @@ export function calculateMinWidth(vd: number, wx: number | undefined, CPS: numbe
   return (0.037 * vd * wx * Math.pow(10, CPS)) / Math.pow(2.14, wx);
 }
 
-export function calculateMinPointSize(vd: number, CPS: number, wx: number | undefined, 
-    xf: number | undefined) {
-  if (wx === undefined) {
+export function calculateMinPointSize(vd: number, CPS: number, xf: number | undefined,
+  wx: number | undefined) {
+  if (xf === undefined || wx === undefined) {
     throw new Error('Could not calculate minimum point size ' +
-      'because wx is undefined');
-  }
-  if (xf === undefined) {
-    throw new Error('Could not calculate minimum point size ' +
-      'because xf is undefined');
+      'because xf and/or wx is undefined');
   }
   return (0.08 * vd * Math.pow(10, CPS) / xf) / Math.pow(2.14, wx);
 }
@@ -262,12 +258,12 @@ export const calculate = (values: InputValuesInterface) => {
   }
 
   let minPoint: number = -1;
-  if (xf instanceof MinMax) {
+  if (xf instanceof MinMax || wx instanceof MinMax) {
     minPoint = (0.08 * vd * Math.pow(10, CPS) / xf.max) / Math.pow(2.14, wx.max);
   } else {
     minPoint = (0.08 * vd * Math.pow(10, CPS) / xf) / Math.pow(2.14, wx);
     if (isNaN(minPoint)) {
-      throw new Error(`minPoint is NaN, vd: ${vd}, CPS: ${CPS}, xf: ${xf}`);
+      throw new Error(`minPoint is NaN, vd: ${vd}, CPS: ${CPS}, xf: ${xf}, wx: ${wx}`);
     }
   }
 
