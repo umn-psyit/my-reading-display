@@ -180,8 +180,12 @@ export class OutputValues implements OutputValuesInterface {
   }
 }
 
-export function calculateMinWidth(vd: number, CPS: number) {
-  return 0.017 * vd * Math.pow(10, CPS);
+export function calculateMinWidth(vd: number, wx: number | undefined, CPS: number) {
+    if (wx === undefined) {
+    throw new Error('Could not calculate minimum display width ' +
+      'because wx is undefined');
+  }
+  return 0.037 * vd * wx * Math.pow(10, CPS-0.33*wx);
 }
 
 export function calculateMinPointSize(vd: number, CPS: number,
@@ -241,6 +245,7 @@ export const calculate = (values: InputValuesInterface) => {
   }
   const xf = getXFFromFont(values.selectedFont);
   const wf = getWFFromFont(values.selectedFont);
+  const wx = getWXFromFont(values.selectedFont);
 
   const minWidth = calculateMinWidth(vd, CPS);
   if (isNaN(minWidth)) {
