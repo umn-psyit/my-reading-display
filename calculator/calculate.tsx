@@ -247,9 +247,14 @@ export const calculate = (values: InputValuesInterface) => {
   const wf = getWFFromFont(values.selectedFont);
   const wx = getWXFromFont(values.selectedFont);
 
-  const minWidth = calculateMinWidth(vd, CPS);
-  if (isNaN(minWidth)) {
-    throw new Error(`minWidth is NaN, vd: ${vd}, CPS: ${CPS}`);
+  let minWidth:number = -1;
+  if (wx instanceof MinMax) {
+    minWidth = 0.037 * vd * wx.max * Math.pow(10, CPS-0.33*wx.max);
+  } else {
+    minWidth = 0.037 * vd * wx * Math.pow(10, CPS-0.33*wx);
+    if (isNaN(minWidth)) {
+      throw new Error(`minWidth is NaN, vd: ${vd}, wx: ${wx}, CPS: ${CPS}`);
+    }
   }
 
   let minPoint: number = -1;
