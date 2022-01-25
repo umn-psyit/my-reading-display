@@ -101,15 +101,15 @@ export const fontOptions = [
   },
   {
     font: 'Calibri',
-    wx: 0.98,
-    wf: 0.46,
+    wx: 0.88,
+    wf: 0.41,
     xf: 0.46,
   },
   {
     font: 'Calibri Bold',
-    wx: 0.88,
-    wf: 0.41,
-    xf: 0.46,
+    wx: 0.89,
+    wf: 0.42,
+    xf: 0.47,
   },
   {
     font: 'Palatino',
@@ -149,8 +149,8 @@ export const fontOptions = [
   },
   {
     font: 'Maxular',
-    wx: 1.54,
-    wf: 0.67,
+    wx: 1.42,
+    wf: 0.62,
     xf: 0.44,
   },
   {
