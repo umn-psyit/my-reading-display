@@ -259,9 +259,9 @@ export const calculate = (values: InputValuesInterface) => {
 
   let maxPoint: number = -1;
   if (wf instanceof MinMax) {
-    maxPoint = (minWidth / (0.32 * wf.min));
+    maxPoint = (minWidth / (0.46 * wf.min));
   } else {
-    maxPoint = minWidth / (0.32 * wf);
+    maxPoint = minWidth / (0.46 * wf);
     if (isNaN(maxPoint)) {
       throw new Error(`maxPoint is NaN, minWidth: ${minWidth}, wf: ${wf}`);
     }
