@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import {useRouter} from 'next/dist/client/router';
 import {
   calculateMaxPointSize, calculateMinPointSize,
-  getXFFromFont, InputValues, OutputValues,
+  getXFFromFont, getWXFromFont, InputValues, OutputValues,
 } from './calculate';
 import {distanceUnits, fontOptions} from '../content/options-definitions';
 import {roundPoints} from '../src/util';
