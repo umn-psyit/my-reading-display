@@ -1,5 +1,6 @@
 import {centralFieldLossOptions, fontOptions} from '../content/options-definitions';
 import {sendResults} from './send-results';
+import { VisionUnitType } from "../src/util";
 
 class MinMax {
   min: number;
@@ -179,8 +180,12 @@ export class OutputValues implements OutputValuesInterface {
   }
 }
 
-export function calculateMinWidth(vd: number, CPS: number) {
-  return 0.017 * vd * Math.pow(10, CPS);
+export function calculateMinWidth(vd: number, wx: number | undefined, CPS: number) {
+    if (wx === undefined) {
+    throw new Error('Could not calculate minimum display width ' +
+      'because wx is undefined');
+  }
+  return (0.037 * vd * wx * Math.pow(10, CPS)) / Math.pow(2.14, wx);
 }
 
 export function calculateMinPointSize(vd: number, CPS: number,
@@ -240,10 +245,16 @@ export const calculate = (values: InputValuesInterface) => {
   }
   const xf = getXFFromFont(values.selectedFont);
   const wf = getWFFromFont(values.selectedFont);
+  const wx = getWXFromFont(values.selectedFont);
 
-  const minWidth = calculateMinWidth(vd, CPS);
-  if (isNaN(minWidth)) {
-    throw new Error(`minWidth is NaN, vd: ${vd}, CPS: ${CPS}`);
+let minWidth:number = -1;
+  if (wx instanceof MinMax) {
+    minWidth = (0.037 * vd * wx.max * Math.pow(10, CPS)) / Math.pow(2.14, wx.max);
+  } else {
+    minWidth = (0.037 * vd * wx * Math.pow(10, CPS)) / Math.pow(2.14, wx);
+    if (isNaN(minWidth)) {
+      throw new Error(`minWidth is NaN, vd: ${vd}, wx: ${wx}, CPS: ${CPS}`);
+    }
   }
 
   let minPoint: number = -1;
