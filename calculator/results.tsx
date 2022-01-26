@@ -51,7 +51,8 @@ export function getPointSizeTableData(inputs: InputValues, results:
     } else {
       console.log(inputs.selectedFont);
       const xf = getXFFromFont(inputs.selectedFont);
-      if (typeof xf === 'number') {
+      const wx = getWXFromFont(inputs.selectedFont);      
+      if ((typeof xf === 'number') && (typeof wx === 'number')) {
         rows.push({font: inputs.selectedFont,
           pointSize: calculateMinPointSize(results.viewDistance,
               results.CPS, xf, wx)});
