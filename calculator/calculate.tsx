@@ -260,6 +260,10 @@ export const calculate = (values: InputValuesInterface) => {
   let minPoint: number = -1;
   if ((xf instanceof MinMax) && (wx instanceof MinMax)) {
     minPoint = (0.08 * vd * Math.pow(10, CPS) / xf.max) / Math.pow(2.14, wx.max);
+  } else if ((xf instanceof MinMax) && !(wx instanceof MinMax)) {
+    minPoint = (0.08 * vd * Math.pow(10, CPS) / xf.max) / Math.pow(2.14, wx);
+  } else if (!(xf instanceof MinMax) && (wx instanceof MinMax)) {
+    minPoint = (0.08 * vd * Math.pow(10, CPS) / xf) / Math.pow(2.14, wx.max);
   } else {
     minPoint = (0.08 * vd * Math.pow(10, CPS) / xf) / Math.pow(2.14, wx);
     if (isNaN(minPoint)) {
