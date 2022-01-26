@@ -9,7 +9,7 @@ import * as yup from 'yup';
 import {useRouter} from 'next/dist/client/router';
 import {
   calculateMaxPointSize, calculateMinPointSize,
-  getXFFromFont, getWXFromFont, InputValues, OutputValues,
+  getXFFromFont, getWXFromFont, getWFFromFont, InputValues, OutputValues,
 } from './calculate';
 import {distanceUnits, fontOptions} from '../content/options-definitions';
 import {roundPoints} from '../src/util';
@@ -92,9 +92,21 @@ export function getMinMaxTableData(inputs: InputValues, results: OutputValues,
     } else {
       console.log(inputs.selectedFont);
       const xf = getXFFromFont(inputs.selectedFont);
-      if (typeof xf === 'number') {
+      const wx = getWXFromFont(inputs.selectedFont);      
+      const wf = getWFFromFont(inputs.selectedFont);      
+
+      let width = -1;
+      if (furtherChoices.chosenDisplaySizeUnits === 'in') {
+        width = 2.54 * furtherChoices.chosenDisplaySize;
+      } else {
+        width = furtherChoices.chosenDisplaySize;
+      }
+      
+      if ((typeof xf === 'number') && (typeof wx === 'number') && (typeof wf === 'number')) {
         rows.push({font: inputs.selectedFont,
-          min: results.minPoint, max: results.maxPoint});
+                   min: calculateMinPointSize(results.viewDistance,results.CPS, xf, wx),
+                   max: calculateMaxPointSize(width, wf)});
+      
       }
     }
   }
