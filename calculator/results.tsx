@@ -46,7 +46,7 @@ export function getPointSizeTableData(inputs: InputValues, results:
       for (let i = 1; i < fontOptions.length - 1; i++) {
         rows.push({font: fontOptions[i].font,
           pointSize: calculateMinPointSize(results.viewDistance,
-              results.CPS, fontOptions[i].xf)});
+              results.CPS, fontOptions[i].xf, fontOptions[i].wx)});
       }
     } else {
       console.log(inputs.selectedFont);
@@ -54,7 +54,7 @@ export function getPointSizeTableData(inputs: InputValues, results:
       if (typeof xf === 'number') {
         rows.push({font: inputs.selectedFont,
           pointSize: calculateMinPointSize(results.viewDistance,
-              results.CPS, xf)});
+              results.CPS, xf, wx)});
       }
     }
   }
@@ -85,7 +85,7 @@ export function getMinMaxTableData(inputs: InputValues, results: OutputValues,
 
         rows.push({font: fontOptions[i].font,
           min: calculateMinPointSize(results.viewDistance,
-              results.CPS, fontOptions[i].xf),
+              results.CPS, fontOptions[i].xf, fontOptions[i].wx),
           max: calculateMaxPointSize(width, fontOptions[i].wf)});
       }
     } else {
