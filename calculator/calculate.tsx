@@ -58,7 +58,7 @@ function getWFFromFont(selectedFont: string): number | MinMax {
   throw new Error(`Could not find font: ${selectedFont} result: ${result}`);
 }
 
-function getWXFromFont(selectedFont: string): number | MinMax {
+export function getWXFromFont(selectedFont: string): number | MinMax {
   if (selectedFont.normalize() === 'No Preference') {
     const min = Math.min(...fontOptions.map((o) =>
       ((o.wx === undefined) ? Number.MAX_VALUE : o.wx)));
