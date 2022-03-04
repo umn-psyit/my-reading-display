@@ -78,27 +78,7 @@ export default function InputForm() {
             marginTop: '1em'}}>
             <div dangerouslySetInnerHTML={{__html: text.VAText}} />
           </Typography>
-          <Box style={{marginTop: '1em'}}>
-            <TextField
-              required
-              id="visualAcuity"
-              name="visualAcuity"
-              label="Visual Acuity (VA)"
-              value={props.values.visualAcuity}
-              onChange={props.handleChange}
-              error={props.touched.visualAcuity &&
-                Boolean(props.errors.visualAcuity)}
-              helperText={props.touched.visualAcuity &&
-                props.errors.visualAcuity}
-              InputProps={{
-                startAdornment:
-                <InputAdornment position="start" aria-live="polite">
-                  {props.values.visualAcuityUnits}</InputAdornment>,
-              }}
-              style={{width: '13rem', margin: '0 1rem 0 0'}}
-              color={highlightColor}
-            />
-
+          <Box style={{marginTop: '1em'}}> 
             <TextField
               required
               select
@@ -118,6 +98,26 @@ export default function InputForm() {
                 <MenuItem key={index} value={label}>{value}</MenuItem>
               ))}
             </TextField>
+            
+            <TextField
+              required
+              id="visualAcuity"
+              name="visualAcuity"
+              label="Visual Acuity (VA)"
+              value={props.values.visualAcuity}
+              onChange={props.handleChange}
+              error={props.touched.visualAcuity &&
+                Boolean(props.errors.visualAcuity)}
+              helperText={props.touched.visualAcuity &&
+                props.errors.visualAcuity}
+              InputProps={{
+                startAdornment:
+                <InputAdornment position="start" aria-live="polite">
+                  {props.values.visualAcuityUnits}</InputAdornment>,
+              }}
+              style={{width: '13rem', margin: '0 1rem 0 0'}}
+              color={highlightColor}
+            />
           </Box>
 
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
