@@ -129,6 +129,21 @@ export default function InputForm() {
               <div dangerouslySetInnerHTML={{__html: text.CPSDetail}} />
             </Typography>
             <TextField
+              select
+              id="criticalPrintSizeUnits"
+              name="criticalPrintSizeUnits"
+              label="CPS Units"
+              value={props.values.criticalPrintSizeUnits}
+              onChange={props.handleChange}
+              style={{width: '13rem', margin: '0 1rem 0 0'}}
+              color={highlightColor}
+            >
+              {visionUnits.map(({value, label}, index) => (
+                <MenuItem key={index} value={label}>{value}</MenuItem>
+              ))}
+            </TextField>
+            
+            <TextField
               id="criticalPrintSize"
               name="criticalPrintSize"
               label="Critical Print Size (CPS)"
@@ -144,24 +159,9 @@ export default function InputForm() {
                   {props.values.criticalPrintSizeUnits}
                 </InputAdornment>,
               }}
-              style={{width: '15rem', margin: '0 1rem 0 0'}}
+              style={{width: '15rem'}}
               color={highlightColor}
-            />
-
-            <TextField
-              select
-              id="criticalPrintSizeUnits"
-              name="criticalPrintSizeUnits"
-              label="CPS Units"
-              value={props.values.criticalPrintSizeUnits}
-              onChange={props.handleChange}
-              style={{width: '13rem'}}
-              color={highlightColor}
-            >
-              {visionUnits.map(({value, label}, index) => (
-                <MenuItem key={index} value={label}>{value}</MenuItem>
-              ))}
-            </TextField>
+            />  
           </Box>
 
           <Box>
