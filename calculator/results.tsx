@@ -247,25 +247,7 @@ export default function Results() {
               Enter a new width here to see what print size range you should have
               for effective reading. Once you enter the width and click &rsquo;Show Table&lsquo;
               you may download a PDF report of your inputs and the results.</Typography>
-            <TextField
-              required
-              id="chosenDisplaySize"
-              name="chosenDisplaySize"
-              label="Display Size"
-              value={props.values.chosenDisplaySize}
-              onChange={props.handleChange}
-              error={props.touched.chosenDisplaySize &&
-                Boolean(props.errors.chosenDisplaySize)}
-              helperText={props.touched.chosenDisplaySize &&
-                props.errors.chosenDisplaySize}
-              InputProps={{
-                endAdornment: <InputAdornment position="end"
-                  aria-live="polite">{props.values.chosenDisplaySizeUnits}
-                </InputAdornment>,
-              }}
-              style={{width: '10rem', marginLeft: '1rem'}}
-              color={highlightColor}
-            />
+  
             <TextField
               select
               required
@@ -285,6 +267,27 @@ export default function Results() {
                 <MenuItem key={index} value={label}>{label}</MenuItem>
               ))}
             </TextField>
+            
+          <TextField
+              required
+              id="chosenDisplaySize"
+              name="chosenDisplaySize"
+              label="Display Size"
+              value={props.values.chosenDisplaySize}
+              onChange={props.handleChange}
+              error={props.touched.chosenDisplaySize &&
+                Boolean(props.errors.chosenDisplaySize)}
+              helperText={props.touched.chosenDisplaySize &&
+                props.errors.chosenDisplaySize}
+              InputProps={{
+                endAdornment: <InputAdornment position="end"
+                  aria-live="polite">{props.values.chosenDisplaySizeUnits}
+                </InputAdornment>,
+              }}
+              style={{width: '10rem', marginLeft: '1rem'}}
+              color={highlightColor}
+            />
+            
             <Button variant="contained" color="primary"
               style={{marginLeft: '1rem', marginTop: '1rem'}} type="submit">
                 {!showMinMaxTable ? 'Show table' : 'Update table'}</Button>
