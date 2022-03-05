@@ -93,7 +93,7 @@ export default function InputForm() {
                 props.errors.visualAcuityUnits}
               style={{width: '12rem'}}
               color={highlightColor}
-            />
+            >
               {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
               ))}
@@ -116,7 +116,7 @@ export default function InputForm() {
               }}
               style={{width: '13rem', margin: '0 1rem 0 0'}}
               color={highlightColor}
-            >
+            />
           </TextField>
           </Box>
 
