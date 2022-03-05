@@ -97,6 +97,7 @@ export default function InputForm() {
               {visionUnits.map(({value, label}, index) => (
                 <MenuItem key={index} value={label}>{value}</MenuItem>
               ))}
+            </TextField>
             
             <TextField
               required
@@ -117,7 +118,6 @@ export default function InputForm() {
               style={{width: '13rem', margin: '0 1rem 0 0'}}
               color={highlightColor}
             />
-          </TextField>
           </Box>
 
           <Box style={{marginTop: '1em', marginBottom: '1em'}}>
