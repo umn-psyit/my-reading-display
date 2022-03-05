@@ -91,7 +91,7 @@ export default function InputForm() {
                 Boolean(props.errors.visualAcuityUnits)}
               helperText={props.touched.visualAcuityUnits &&
                 props.errors.visualAcuityUnits}
-              style={{width: '12rem'}}
+              style={{width: '12rem', margin: '0 1rem 0 0'}}
               color={highlightColor}
             >
               {visionUnits.map(({value, label}, index) => (
@@ -115,7 +115,7 @@ export default function InputForm() {
                 <InputAdornment position="start" aria-live="polite">
                   {props.values.visualAcuityUnits}</InputAdornment>,
               }}
-              style={{width: '13rem', margin: '0 1rem 0 0'}}
+              style={{width: '13rem'}}
               color={highlightColor}
             />
           </Box>
