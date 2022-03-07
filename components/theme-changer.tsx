@@ -63,7 +63,8 @@ const ThemeChanger = (props: ThemeChangerProps) => {
   if (useDarkTheme) {
     return (
       <ChangeButton aria-label="switch to light mode">
-        switch to light mode
+        <FontAwesomeIcon icon={faSun} />
+        light mode
       </ChangeButton>
     );
   }
