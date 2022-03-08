@@ -25,7 +25,7 @@ const initialValues = {
   hasCentralFieldLoss: 'Don\'t Know',
   selectedFont: fontOptions[0].font,
   selectedViewingDistance: viewingDistances[0].label,
-  customViewDistance: 0,
+  customViewDistance: '',
   customViewDistanceUnits: distanceUnits[0].label,
 };
 
