@@ -103,7 +103,7 @@ export interface InputValuesInterface {
   hasCentralFieldLoss: string;
   selectedFont: string;
   selectedViewingDistance: string;
-  customViewDistance: number;
+  customViewDistance: string;
   customViewDistanceUnits: string;
 }
 
@@ -122,14 +122,14 @@ export class InputValues implements InputValuesInterface {
 
   selectedViewingDistance: string;
 
-  customViewDistance: number;
+  customViewDistance: string;
 
   customViewDistanceUnits: string;
 
   constructor(visualAcuityUnits: VisionUnitType, visualAcuity: string,
       criticalPrintSizeUnits: VisionUnitType, criticalPrintSize: string,
       hasCentralFieldLoss: string, selectedFont: string,
-      selectedViewingDistance: string, customViewDistance: number,
+      selectedViewingDistance: string, customViewDistance: string,
       customViewDistanceUnits: string) {
     this.visualAcuityUnits = visualAcuityUnits;
     this.visualAcuity = visualAcuity;
@@ -238,9 +238,9 @@ export const calculate = (values: InputValuesInterface) => {
   let vd = parseFloat(values.selectedViewingDistance);
   if (values.selectedViewingDistance === 'Custom') {
     if (values.customViewDistanceUnits === 'in') {
-      vd = 2.54 * values.customViewDistance;
+      vd = 2.54 * parseFloat(values.customViewDistance);
     } else {
-      vd = values.customViewDistance;
+      vd = parseFloat(values.customViewDistance);
     }
   }
   const xf = getXFFromFont(values.selectedFont);
