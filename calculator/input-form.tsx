@@ -19,7 +19,7 @@ import {text} from '../content/calculator-text';
 
 const initialValues = {
   visualAcuityUnits: visionUnits[0].label,
-  visualAcuity: '20',
+  visualAcuity: '',
   criticalPrintSizeUnits: visionUnits[0].label,
   criticalPrintSize: '',
   hasCentralFieldLoss: 'Don\'t Know',
