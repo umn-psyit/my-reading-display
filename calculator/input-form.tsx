@@ -280,6 +280,7 @@ export default function InputForm() {
                 {distanceUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
                 ))}
+               </TextField>                                  
                <TextField
                 required
                 id="customViewDistance"
@@ -300,7 +301,6 @@ export default function InputForm() {
                 style={{width: '10rem', margin: '0 1rem'}}
                 color={highlightColor}
               />     
-               </TextField>                  
             </Box>
           </Box>
 
