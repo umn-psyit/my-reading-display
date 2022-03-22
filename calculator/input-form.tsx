@@ -262,6 +262,25 @@ export default function InputForm() {
             </TextField>
             <Box component="span"
               hidden={!(props.values.selectedViewingDistance === 'Custom')}>
+              <TextField
+                select
+                required
+                id="customViewDistanceUnits"
+                name="customViewDistanceUnits"
+                label="View Distance Units"
+                value={props.values.customViewDistanceUnits}
+                onChange={props.handleChange}
+                style={{width: '13rem', margin: '0 1rem'}}
+                error={props.touched.customViewDistanceUnits &&
+                  Boolean(props.errors.customViewDistanceUnits)}
+                helperText={props.touched.customViewDistanceUnits &&
+                  props.errors.customViewDistanceUnits}
+                color={highlightColor}
+              >
+                {distanceUnits.map(({value, label}, index) => (
+                  <MenuItem key={index} value={label}>{label}</MenuItem>
+                ))}
+              
                <TextField
                 required
                 id="customViewDistance"
@@ -281,26 +300,8 @@ export default function InputForm() {
                 }}
                 style={{width: '10rem', margin: '0 1rem'}}
                 color={highlightColor}
-              />
-              <TextField
-                select
-                required
-                id="customViewDistanceUnits"
-                name="customViewDistanceUnits"
-                label="View Distance Units"
-                value={props.values.customViewDistanceUnits}
-                onChange={props.handleChange}
-                style={{width: '13rem', margin: '0 1rem'}}
-                error={props.touched.customViewDistanceUnits &&
-                  Boolean(props.errors.customViewDistanceUnits)}
-                helperText={props.touched.customViewDistanceUnits &&
-                  props.errors.customViewDistanceUnits}
-                color={highlightColor}
-              >
-                {distanceUnits.map(({value, label}, index) => (
-                  <MenuItem key={index} value={label}>{label}</MenuItem>
-                ))}
-              </TextField>              
+              />     
+               </TextField>                  
             </Box>
           </Box>
 
