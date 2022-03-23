@@ -260,6 +260,7 @@ export default function InputForm() {
                 <MenuItem key={index} value={label}>{label}</MenuItem>
               ))}
             </TextField>
+            
             <Box component="span"
               hidden={!(props.values.selectedViewingDistance === 'Custom')}>
               <TextField
@@ -276,11 +277,10 @@ export default function InputForm() {
                 helperText={props.touched.customViewDistanceUnits &&
                   props.errors.customViewDistanceUnits}
                 color={highlightColor}
-              >
+              />
                 {distanceUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
                 ))}
-               </TextField>                
 
                 <TextField
                 required
