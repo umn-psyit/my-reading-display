@@ -302,7 +302,7 @@ export default function InputForm() {
                 }}
                 style={{width: '10rem'}}
                 color={highlightColor}
-              >
+              />
               </TextField>
             </Box>
           </Box>
