@@ -22,7 +22,7 @@ export const defaultCalculatorState: CalculatorContextType = {
   outputValues: new OutputValues(false, -1, -1, -1, -1, -1, -1),
   setOutputValues: (values: OutputValues) => {},
   resetOutputValues: () => {},
-  inputValues: new InputValues('20/', '', '20/', '', '', '', '', 'Distance', ''),
+  inputValues: new InputValues('20/', '', '20/', '', '', '', '', '40', ''),
   setInputValues: (values: InputValues) => {},
   resetInputValues: () => {},
   showMinMaxTable: false,
