@@ -280,7 +280,6 @@ export default function InputForm() {
                 {distanceUnits.map(({value, label}, index) => (
                   <MenuItem key={index} value={label}>{label}</MenuItem>
                 ))}
-               </TextField>                                  
                <TextField
                 required
                 id="customViewDistance"
