@@ -25,7 +25,7 @@ const initialValues = {
   hasCentralFieldLoss: 'Don\'t Know',
   selectedFont: fontOptions[0].font,
   selectedViewingDistance: viewingDistances[0].label,
-  customViewDistance: '',
+  customViewDistance: '40',
   customViewDistanceUnits: distanceUnits[0].label,
 };
 
@@ -265,6 +265,7 @@ export default function InputForm() {
               hidden={!(props.values.selectedViewingDistance === 'Custom')}>
                <TextField
                 select
+                required
                 id="customViewDistanceUnits"
                 name="customViewDistanceUnits"
                 label="View Distance Units"
@@ -283,6 +284,7 @@ export default function InputForm() {
               </TextField>
               
               <TextField
+                required               
                 id="customViewDistance"
                 name="customViewDistance"
                 label="View Distance"
