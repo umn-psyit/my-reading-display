@@ -301,7 +301,8 @@ export default function InputForm() {
                 }}
                 style={{width: '10rem', margin: '0 1rem'}}
                 color={highlightColor}
-              >  
+              >
+              </TextField>                                  
             </Box>
           </Box>
 
