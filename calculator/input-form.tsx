@@ -271,7 +271,7 @@ export default function InputForm() {
                 label="View Distance Units"
                 value={props.values.customViewDistanceUnits}
                 onChange={props.handleChange}
-                style={{width: '13rem'}}
+                style={{width: '13rem', margin: '0 1rem'}}
                 error={props.touched.customViewDistanceUnits &&
                   Boolean(props.errors.customViewDistanceUnits)}
                 helperText={props.touched.customViewDistanceUnits &&
@@ -300,7 +300,7 @@ export default function InputForm() {
                     aria-live="polite">{props.values.customViewDistanceUnits}
                   </InputAdornment>,
                 }}
-                style={{width: '10rem', margin: '0 1rem'}}
+                style={{width: '10rem'}}
                 color={highlightColor}
               >
               </TextField>
