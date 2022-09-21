@@ -281,7 +281,7 @@ export const calculate = (values: InputValuesInterface) => {
     }
   }
 
-  sendResults(VA, CPS, CFL, vd, values.selectedFont);
+  sendResults(VA, CPS, values.hasCentralFieldLoss, vd, values.selectedFont);
 
   return new OutputValues(true, minWidth, minPoint, maxPoint, vd, CPS, VA);
 };
