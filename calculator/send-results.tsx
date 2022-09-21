@@ -1,4 +1,4 @@
-export function sendResults(VA: number, CPS: number, CFL: number,
+export function sendResults(VA: number, CPS: number, CFL: string,
     VD: number, font: string) {
   fetch(
       'https://api.knack.com/v1/pages/scene_2/views/view_3/records',
